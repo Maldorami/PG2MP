@@ -37,23 +37,19 @@ bool Pacman::init(Renderer& rendi){
 //---------------------------------------------------------------------------
 void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	if (input.keyDown(input.KEY_LEFT)){
-		cam->strafe(speedCamera* timer.timeBetweenFrames());
 		player.flipX(true);
 		player.setAnimation(&walk);
 		player.setPos(player.posX() - (speed * timer.timeBetweenFrames()), player.posY());
 	}
 	else if (input.keyDown(input.KEY_RIGHT)){
-		cam->strafe(-speedCamera* timer.timeBetweenFrames());
 		player.flipX(false);
 		player.setAnimation(&walk);
 		player.setPos(player.posX() + (speed * timer.timeBetweenFrames()), player.posY());
 	}
 	else if (input.keyDown(input.KEY_DOWN)){
-		cam->fly(speedCamera* timer.timeBetweenFrames());
 		player.setPos(player.posX(), player.posY() - (speed * timer.timeBetweenFrames()));
 	}
 	else if (input.keyDown(input.KEY_UP)){
-		cam->fly(-speedCamera* timer.timeBetweenFrames());
 		player.setPos(player.posX(), player.posY() + (speed * timer.timeBetweenFrames()));
 	}
 	else if (input.keyDown(input.KEY_W)){
@@ -63,25 +59,29 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 		cam->walk(-zoomCamera* timer.timeBetweenFrames());
 	}
 	else if (input.keyDown(input.KEY_Q)){
-		cam->yaw(rotationCamera* timer.timeBetweenFrames());
-	}
-	else if (input.keyDown(input.KEY_E)){
-		cam->yaw(-rotationCamera* timer.timeBetweenFrames());
-	}
-	else if (input.keyDown(input.KEY_R)){
-		cam->pitch(rotationCamera* timer.timeBetweenFrames());
-	}
-	else if (input.keyDown(input.KEY_F)){
-		cam->pitch(-rotationCamera* timer.timeBetweenFrames());
-	}
-	else if (input.keyDown(input.KEY_A)){
 		cam->roll(rotationCamera* timer.timeBetweenFrames());
 	}
-	else if (input.keyDown(input.KEY_D)){
+	else if (input.keyDown(input.KEY_E)){
 		cam->roll(-rotationCamera* timer.timeBetweenFrames());
 	}
 	else
 		player.setAnimation(&iddle);
+
+	// Camera move
+	 if (input.keyDown(input.KEY_D)){
+		cam->strafe(speedCamera* timer.timeBetweenFrames());
+	}
+	 if (input.keyDown(input.KEY_A)){
+		cam->strafe(-speedCamera* timer.timeBetweenFrames());
+	}
+	 if (input.keyDown(input.KEY_SPACE)){
+		 cam->fly(speedCamera * timer.timeBetweenFrames());
+	} 
+	 if (input.keyDown(input.KEY_LCONTROL)){
+		 cam->fly(-speedCamera * timer.timeBetweenFrames());
+	}
+	cam->yaw(input.mouseRelPosX() / 10);
+	cam->pitch(input.mouseRelPosY() / 10);
 
 
 	for (size_t j = 0; j < mapa._layers.size(); j++)

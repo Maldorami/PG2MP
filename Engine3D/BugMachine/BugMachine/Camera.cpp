@@ -7,9 +7,6 @@
 #include <d3dx9.h>
 #pragma comment (lib, "d3dx9.lib")
 
-//#include <d3dx9math.h>
-//#pragma comment (lib, "d3dx9math.lib")
-
 Camera::Camera(Renderer& renderer)
 	:
 	render(NULL),
@@ -26,7 +23,7 @@ Camera::Camera(Renderer& renderer)
 	_forward(0.0f, 0.0f, 1.0f),
 	_right(1.0f, 0.0f, 0.0f),
 	_lookAt(0.0f, 0.0f, 1.0f),
-	_pos(0.0f, 0.0f, -1.0f),
+	_pos(0.0f, 0.0f, -1000.0f),
 	_localView(new D3DXMATRIX())
 {
 	setRender(renderer);
@@ -36,12 +33,13 @@ Camera::~Camera(){
 
 }
 void Camera::update(){
+	// Actualizo loockAt
 	_lookAt = _pos + _forward;
 
-	// Calculate the new view matrix
+	// Calcular la nueva matrix de view
 	D3DXMatrixLookAtLH(_localView, &_pos, &_lookAt, &_up);
 
-	// Set Transform
+	// Setear la transformacion
 	render->d3ddev->SetTransform(D3DTS_VIEW, _localView);
 }
 void Camera::roll(float angle){
@@ -67,7 +65,7 @@ void Camera::pitch(float angle){
 
 	D3DXMATRIX rotation;
 	D3DXMatrixRotationAxis(&rotation, &_right, D3DXToRadian(angle));
-	D3DXVec3TransformNormal(&_up, &_up, &rotation);
+	//D3DXVec3TransformNormal(&_up, &_up, &rotation);
 	D3DXVec3TransformNormal(&_forward, &_forward, &rotation);
 
 	update();
@@ -103,6 +101,7 @@ void Camera::fly(float distance){
 
 	update();
 } 
+
 void Camera::setRender(Renderer& rendi){
 	render = &rendi;
 }

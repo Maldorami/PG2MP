@@ -6,4 +6,5 @@
 struct D3DXMATRIX;
 typedef D3DXMATRIX* Matrix;
 //---------------------------------------------------------------------------
+
 #endif 
