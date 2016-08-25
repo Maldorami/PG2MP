@@ -14,5 +14,7 @@ private:
 	Sprite player;
 	Map mapa;
 	Text timerText;
+
+	Camera* cam;
 };
 #endif

@@ -18,7 +18,6 @@ public:
 	DLLexport virtual void deinit() = 0;
 	bool isDone() const;
 	DLLexport void setDone(bool bDone);
-	Camera camera;
 
 private:
 	bool m_bDone;

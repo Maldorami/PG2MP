@@ -6,6 +6,10 @@
 
 #include <d3dx9.h>
 #pragma comment (lib, "d3dx9.lib")
+
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
 //---------------------------------------------------------------------------
 bool Renderer::init(HWND hWnd)
 {
@@ -50,7 +54,7 @@ bool Renderer::init(HWND hWnd)
 	float viewPortHeight = static_cast<float> (viewPort.Height);
 
 	D3DXMATRIX projectionMatrix;
-    D3DXMatrixPerspectiveLH(&projectionMatrix, viewPortWidth, viewPortHeight, 0.1f, 1000.0f);
+	D3DXMatrixPerspectiveFovLH(&projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, -10, 10.0f);
 	d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
 
 	return true;	

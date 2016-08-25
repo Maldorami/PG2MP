@@ -1,10 +1,13 @@
 #ifndef CAMERA_H
 #define CAMERA_H
+
 #define DLLexport __declspec(dllexport)
+
 #include "Renderer.h"
+
 class Camera{
 public:
-	DLLexport Camera();
+	DLLexport Camera(Renderer& render);
 	DLLexport ~Camera();
 	//Rotation
 	DLLexport void roll(float angle);
@@ -15,10 +18,13 @@ public:
 	DLLexport void walk(float distance);
 	DLLexport void strafe(float distance);
 	DLLexport void fly(float distance);
+
 	DLLexport void update();
 
 	DLLexport void setRender(Renderer& rendi);
 	Renderer* render;
+
+	//Camera Settings
 	float posX;
 	float posY;
 	float posZ;
@@ -28,11 +34,14 @@ public:
 	float UPposX;
 	float UPposY;
 	float UPposZ;
-	Vector3 _eye;
-	Vector3 _at;
-	Vector3 _up;
-	Vector3 _right;
-	Matrix _view;
+
+	D3DXVECTOR3 _up;
+	D3DXVECTOR3 _lookAt;
+	D3DXVECTOR3 _forward;
+	D3DXVECTOR3 _right;
+	D3DXVECTOR3 _pos;
+
+	Matrix	_localView;
 
 };
 #endif

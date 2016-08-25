@@ -1,83 +1,106 @@
 #include "Camera.h"
 #include "Renderer.h"
+
 #include <d3d9.h>
 #pragma comment (lib, "d3d9.lib")
 
 #include <d3dx9.h>
 #pragma comment (lib, "d3dx9.lib")
 
-Camera::Camera()
+//#include <d3dx9math.h>
+//#pragma comment (lib, "d3dx9math.lib")
+
+Camera::Camera(Renderer& renderer)
 	:
 	render(NULL),
 	posX(0),
 	posY(0),
-	posZ(-0.1f),
+	posZ(-1),
 	LAposX(0),
 	LAposY(0),
 	LAposZ(1.0f),
 	UPposX(0),
-	UPposY(1.0f),
+	UPposY(1.0),
 	UPposZ(0),
-	_eye(new D3DXVECTOR3),
-	_up(new D3DXVECTOR3),
-	_at(new D3DXVECTOR3),
-	_right(new D3DXVECTOR3(1.0,0.0f,0.0f)),
-	_view(new D3DXMATRIX)
-	{}
+	_up(0.0f, 1.0f, 0.0f),
+	_forward(0.0f, 0.0f, 1.0f),
+	_right(1.0f, 0.0f, 0.0f),
+	_lookAt(0.0f, 0.0f, 1.0f),
+	_pos(0.0f, 0.0f, -1.0f),
+	_localView(new D3DXMATRIX())
+{
+	setRender(renderer);
+	update();
+}
 Camera::~Camera(){
 
 }
 void Camera::update(){
-	_eye->x = posX;
-	_eye->y = posY;
-	_eye->z = posZ;
-	_at->x = LAposX;
-	_at->y = LAposY;
-	_at->z = LAposZ;
-	_up->x = UPposX;
-	_up->y = UPposY;
-	_up->z = UPposZ;
-	D3DXMatrixLookAtLH(_view, _eye, _at, _up);
-	render->d3ddev->SetTransform(D3DTS_VIEW, _view);
+	_lookAt = _pos + _forward;
+
+	// Calculate the new view matrix
+	D3DXMatrixLookAtLH(_localView, &_pos, &_lookAt, &_up);
+
+	// Set Transform
+	render->d3ddev->SetTransform(D3DTS_VIEW, _localView);
 }
 void Camera::roll(float angle){
 
+	if (angle == 0.0f)
+	{
+		return;
+	}
+	
+	D3DXMATRIX rotation;
+	D3DXMatrixRotationAxis(&rotation, &_forward, D3DXToRadian(angle));
+	D3DXVec3TransformNormal(&_right, &_right, &rotation);
+	D3DXVec3TransformNormal(&_up, &_up, &rotation);
+
+	update();
 }
 void Camera::pitch(float angle){
-	
+
+	if (angle == 0.0f)
+	{
+		return;
+	}
+
+	D3DXMATRIX rotation;
+	D3DXMatrixRotationAxis(&rotation, &_right, D3DXToRadian(angle));
+	D3DXVec3TransformNormal(&_up, &_up, &rotation);
+	D3DXVec3TransformNormal(&_forward, &_forward, &rotation);
+
+	update();
 }
 void Camera::yaw(float angle){
-	D3DXMATRIX rotationMatrix;
-	D3DXMatrixRotationY(&rotationMatrix, D3DXToRadian(angle));
-	D3DXVECTOR4 result;
-	D3DXVec3Transform(&result, _at, &rotationMatrix);
-	_at->x = result.x;
-	_at->y = result.y;
-	_at->z = result.z;
 
-	D3DXVECTOR3 target;
-	target.x = posX + _at->x;
-	target.y = posY + _at->y;
-	target.z = posZ + _at->z;
+	if (angle == 0.0f)
+	{
+		return;
+	}
 
-	D3DXMatrixLookAtLH(_view, _eye, &target, _up);
-	render->d3ddev->SetTransform(D3DTS_VIEW, _view);
+	D3DXMATRIX rotation;
+	D3DXMatrixRotationAxis(&rotation, &_up, D3DXToRadian(angle));
+	D3DXVec3TransformNormal(&_right, &_right, &rotation);
+	D3DXVec3TransformNormal(&_forward, &_forward, &rotation);
+
+	update();
 }
 void Camera::walk(float distance){
-	posZ += distance;
-	LAposZ += distance;
+	_pos += _forward * distance;
+
 	update();
 }
 
 void Camera::strafe(float distance){
-	posX += distance;
-	LAposX += distance;
+	_pos += _right * distance;
+
 	update();
 }
 
 void Camera::fly(float distance){
-	posY += distance;
-	LAposY += distance;
+	_pos += _up * distance;
+
 	update();
 } 
 void Camera::setRender(Renderer& rendi){
