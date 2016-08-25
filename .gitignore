@@ -45,3 +45,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+bin
+tmp
+/Engine3D/BugMachine/*.sdf
+*.opensdf
+Debug

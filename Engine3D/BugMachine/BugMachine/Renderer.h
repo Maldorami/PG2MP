@@ -1,7 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "pg1_vertexbuffer.h"
+#include "pg2_vertexbuffer.h"
 #include "RenderTypes.h"
 #include "Mat.h"
 #include <string>

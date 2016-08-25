@@ -156,7 +156,8 @@
     <ClInclude Include="pg1_directinput.h" />
     <ClInclude Include="pg1_input.h" />
     <ClInclude Include="pg1_timer.h" />
-    <ClInclude Include="pg1_vertexbuffer.h" />
+    <ClInclude Include="pg2_indexbuffer.h" />
+    <ClInclude Include="pg2_vertexbuffer.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderTypes.h" />
@@ -175,13 +176,18 @@
     <ClCompile Include="pg1_directinput.cpp" />
     <ClCompile Include="pg1_input.cpp" />
     <ClCompile Include="pg1_timer.cpp" />
-    <ClCompile Include="pg1_vertexbuffer.cpp" />
+    <ClCompile Include="pg2_indexbuffer.cpp" />
+    <ClCompile Include="pg2_vertexbuffer.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pg2_indexbuffer.inl" />
+    <None Include="pg2_vertexbuffer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
