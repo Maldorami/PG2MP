@@ -72,7 +72,7 @@ bool Pacman::init(Renderer& rendi){
 	};
 	piramide = new Mesh(rendi);
 	piramide->setMeshData(piramideVertices, Primitive::TriangleStrip, ARRAYSIZE(piramideVertices), piramideIndices, ARRAYSIZE(piramideIndices));
-	piramide->setPos(0, 0, 0);
+	piramide->setPos(0, 0, 100000);
 	piramide->setScale(300, 300, 300);
 
 
@@ -127,7 +127,6 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 
 	cam->update();
 	cube->draw();
-	//piramide->draw();
-	//quad->draw();
+	piramide->draw();
 }
 //---------------------------------------------------------------------------
