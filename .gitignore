@@ -50,3 +50,5 @@ tmp
 /Engine3D/BugMachine/*.sdf
 *.opensdf
 Debug
+bin
+tmp

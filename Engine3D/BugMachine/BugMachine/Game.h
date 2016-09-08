@@ -3,9 +3,6 @@
 
 #include "Renderer.h"
 #include "pg1_directinput.h"
-#include "Quad.h"
-#include "Sprite.h"
-#include "Map.h"
 #include "Text.h"
 #include "Camera.h"
 #include "Mesh.h"

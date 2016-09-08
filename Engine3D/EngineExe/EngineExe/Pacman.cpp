@@ -6,6 +6,7 @@
 float speedCamera = 10;
 float zoomCamera = 10;
 float rotationCamera = 10;
+float rot = 0.0f;
 //---------------------------------------------------------------------------
 bool Pacman::init(Renderer& rendi){
 	// camera config
@@ -72,8 +73,8 @@ bool Pacman::init(Renderer& rendi){
 	};
 	piramide = new Mesh(rendi);
 	piramide->setMeshData(piramideVertices, Primitive::TriangleStrip, ARRAYSIZE(piramideVertices), piramideIndices, ARRAYSIZE(piramideIndices));
-	piramide->setPos(0, 0, 100000);
-	piramide->setScale(300, 300, 300);
+	piramide->setPos(0,1500, -100);
+	piramide->setScale(1000, 1000,1000);
 
 
 	quad = new Mesh(rendi);
@@ -89,8 +90,8 @@ bool Pacman::init(Renderer& rendi){
 		2, 1, 3
 	};
 	quad->setMeshData(quadVertices, Primitive::TriangleStrip, ARRAYSIZE(quadVertices), quadIndices, ARRAYSIZE(quadIndices));
-	quad->setPos(0, 0);
-	quad->setScale(150, 150);
+	quad->setPos(0, 0, 0);
+	quad->setScale(150, 150, 150);
 
 
 	return true;
@@ -110,17 +111,17 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	if (input.keyDown(input.KEY_E)){
 		cam->roll(-rotationCamera* timer.timeBetweenFrames());
 	}
-	 if (input.keyDown(input.KEY_D)){
+	if (input.keyDown(input.KEY_D)){
 		cam->strafe(speedCamera* timer.timeBetweenFrames());
 	}
-	 if (input.keyDown(input.KEY_A)){
+	if (input.keyDown(input.KEY_A)){
 		cam->strafe(-speedCamera* timer.timeBetweenFrames());
 	}
-	 if (input.keyDown(input.KEY_SPACE)){
-		 cam->fly(speedCamera * timer.timeBetweenFrames());
-	} 
-	 if (input.keyDown(input.KEY_LCONTROL)){
-		 cam->fly(-speedCamera * timer.timeBetweenFrames());
+	if (input.keyDown(input.KEY_SPACE)){
+		cam->fly(speedCamera * timer.timeBetweenFrames());
+	}
+	if (input.keyDown(input.KEY_LCONTROL)){
+		cam->fly(-speedCamera * timer.timeBetweenFrames());
 	}
 	cam->yaw((float)input.mouseRelPosX() / 10);
 	cam->pitch((float)input.mouseRelPosY() / 10);

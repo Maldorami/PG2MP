@@ -1,30 +1,9 @@
-﻿Build started 08/09/2016 10:04:37 a.m..
+﻿Build started 08/09/2016 11:02:33 a.m..
      1>Project "C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\\" /Fd"C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Renderer.cpp
-         Renderer.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" d3d9.lib d3dx9.lib d3dx9d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib" /MACHINE:X86 /DLL C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Animation.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Camera.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Engine.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Entity2D.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Game.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Map.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Mesh.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_directinput.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_input.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_timer.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_indexbuffer.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_vertexbuffer.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Quad.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Renderer.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Sprite.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Text.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\tinyxml2.obj
-         C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Window.obj
+     1>Link:
          BugMachine.vcxproj -> C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
      1>Done Building Project "C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.75
+Time Elapsed 00:00:00.07

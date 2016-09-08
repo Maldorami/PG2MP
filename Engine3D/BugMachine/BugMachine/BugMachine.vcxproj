@@ -151,7 +151,6 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity2D.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="Mat.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="pg1_directinput.h" />
@@ -159,10 +158,8 @@
     <ClInclude Include="pg1_timer.h" />
     <ClInclude Include="pg2_indexbuffer.h" />
     <ClInclude Include="pg2_vertexbuffer.h" />
-    <ClInclude Include="Quad.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderTypes.h" />
-    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Window.h" />
@@ -173,16 +170,13 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity2D.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="pg1_directinput.cpp" />
     <ClCompile Include="pg1_input.cpp" />
     <ClCompile Include="pg1_timer.cpp" />
     <ClCompile Include="pg2_indexbuffer.cpp" />
     <ClCompile Include="pg2_vertexbuffer.cpp" />
-    <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Window.cpp" />
