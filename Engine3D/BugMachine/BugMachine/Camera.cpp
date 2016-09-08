@@ -65,7 +65,8 @@ void Camera::pitch(float angle){
 
 	D3DXMATRIX rotation;
 	D3DXMatrixRotationAxis(&rotation, &_right, D3DXToRadian(angle));
-	//D3DXVec3TransformNormal(&_up, &_up, &rotation);
+	
+	D3DXVec3TransformNormal(&_up, &_up, &rotation);
 	D3DXVec3TransformNormal(&_forward, &_forward, &rotation);
 
 	update();

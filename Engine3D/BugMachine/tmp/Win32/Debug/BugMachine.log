@@ -1,31 +1,64 @@
-﻿Build started 25/08/2016 11:21:05 a.m..
-     1>Project "C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" on node 2 (Build target(s)).
+﻿Build started 08/09/2016 02:06:45 a.m..
+     1>Project "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\\" /Fd"C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Engine.cpp Entity2D.cpp Game.cpp Map.cpp Quad.cpp Renderer.cpp Sprite.cpp Text.cpp pg2_indexbuffer.cpp pg2_vertexbuffer.cpp
-         pg2_vertexbuffer.cpp
-     1>c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\pg2_vertexbuffer.cpp(75): error C2039: 'setCurrentVertexBuffer' : is not a member of 'Renderer'
-                 c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\renderer.h(19) : see declaration of 'Renderer'
-         pg2_indexbuffer.cpp
-     1>c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\pg2_indexbuffer.cpp(60): error C2039: 'setCurrentIndexBuffer' : is not a member of 'Renderer'
-                 c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\renderer.h(19) : see declaration of 'Renderer'
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\\" /Fd"C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Animation.cpp Camera.cpp Engine.cpp Entity2D.cpp Game.cpp Map.cpp Mesh.cpp pg1_directinput.cpp pg1_input.cpp pg1_timer.cpp pg2_indexbuffer.cpp pg2_vertexbuffer.cpp Quad.cpp Renderer.cpp Sprite.cpp Text.cpp tinyxml2.cpp Window.cpp
+         Window.cpp
+         tinyxml2.cpp
          Text.cpp
          Sprite.cpp
          Renderer.cpp
-     1>c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\renderer.cpp(37): error C2661: 'VertexBuffer::VertexBuffer' : no overloaded function takes 3 arguments
-     1>c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\renderer.cpp(38): error C2661: 'VertexBuffer::VertexBuffer' : no overloaded function takes 3 arguments
-     1>c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\renderer.cpp(67): error C2039: 'draw' : is not a member of 'VertexBuffer'
-                 c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\pg2_vertexbuffer.h(11) : see declaration of 'VertexBuffer'
-     1>c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\renderer.cpp(73): error C2039: 'draw' : is not a member of 'VertexBuffer'
-                 c:\users\820\desktop\pg2mp\engine3d\bugmachine\bugmachine\pg2_vertexbuffer.h(11) : see declaration of 'VertexBuffer'
          Quad.cpp
+         pg2_vertexbuffer.cpp
+         pg2_indexbuffer.cpp
+         pg1_timer.cpp
+         pg1_input.cpp
+         pg1_directinput.cpp
+         Mesh.cpp
+     1>c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(8): warning C4275: non dll-interface class 'Entity2D' used as base for dll-interface class 'Mesh'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\entity2d.h(10) : see declaration of 'Entity2D'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(8) : see declaration of 'Mesh'
+     1>c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(26): warning C4251: 'Mesh::rendi' : class 'Renderer' needs to have dll-interface to be used by clients of class 'Mesh'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\renderer.h(20) : see declaration of 'Renderer'
          Map.cpp
          Game.cpp
+     1>c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(8): warning C4275: non dll-interface class 'Entity2D' used as base for dll-interface class 'Mesh'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\entity2d.h(10) : see declaration of 'Entity2D'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(8) : see declaration of 'Mesh'
+     1>c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(26): warning C4251: 'Mesh::rendi' : class 'Renderer' needs to have dll-interface to be used by clients of class 'Mesh'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\renderer.h(20) : see declaration of 'Renderer'
          Entity2D.cpp
          Engine.cpp
+     1>c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(8): warning C4275: non dll-interface class 'Entity2D' used as base for dll-interface class 'Mesh'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\entity2d.h(10) : see declaration of 'Entity2D'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(8) : see declaration of 'Mesh'
+     1>c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\mesh.h(26): warning C4251: 'Mesh::rendi' : class 'Renderer' needs to have dll-interface to be used by clients of class 'Mesh'
+                 c:\users\ramiro\desktop\nueva carpeta\trunk\engine3d\bugmachine\bugmachine\renderer.h(20) : see declaration of 'Renderer'
          Camera.cpp
+         Animation.cpp
          Generating Code...
-     1>Done Building Project "C:\Users\820\Desktop\PG2MP\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" (Build target(s)) -- FAILED.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" d3d9.lib d3dx9.lib d3dx9d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib" /MACHINE:X86 /DLL "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Animation.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Camera.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Engine.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Entity2D.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Game.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Map.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Mesh.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_directinput.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_input.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_timer.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_indexbuffer.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_vertexbuffer.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Quad.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Renderer.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Sprite.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Text.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\tinyxml2.obj"
+         "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Window.obj"
+            Creating library C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib and object C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.exp
+         BugMachine.vcxproj -> C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
+     1>Done Building Project "C:\Users\Ramiro\Desktop\Nueva carpeta\trunk\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:12.84
+Time Elapsed 00:00:15.80

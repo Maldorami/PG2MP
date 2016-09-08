@@ -1,11 +1,12 @@
 #ifndef RENDERER_H
 #define RENDERER_H
-
-#include "pg2_vertexbuffer.h"
-#include "RenderTypes.h"
-#include "Mat.h"
 #include <string>
 #include <vector>
+#include "Mat.h"
+#include <Windows.h>
+#include "RenderTypes.h"
+#include "pg2_indexbuffer.h"
+#include "pg2_vertexbuffer.h"
 
 struct IDirect3D9;
 struct IDirect3DDevice9;
@@ -23,22 +24,32 @@ public:
 	DLLexport const Texture loadTexture(const std::string& fileName, int colorKey);
 
 	Renderer(){};
+	~Renderer();
 	bool init(HWND hwnd);
 	void beginFrame();
 	void endFrame();
 	void drawText(ID3DXFont* _Font, std::string& _text, RECT& _rect);
 
 	void setMatrix(MatrixType matris, const Matrix& Matrix);
-	~Renderer();
 
 	void setCurrentTexture(const Texture& texture);
 
 	IDirect3DDevice9* d3ddev;
+
+	//3D
+	VertexBuffer* createVertexBuffer(size_t uiVertexSize, unsigned int uiFVF);
+	IndexBuffer* createIndexBuffer();
+	void setCurrentIndexBuffer(IndexBuffer* pkIndexBuffer);
+	void setCurrentVertexBuffer(VertexBuffer* pkVertexBuffer);
+	void drawCurrentBuffers(Primitive ePrimitive);
 
 private:
 	VertexBuffer* v_buffer;
 	VertexBuffer* v_bufferS;
 	IDirect3D9* d3d;
 	std::vector<Texture> textures;
+
+	IndexBuffer* _indexBuffer;
+	VertexBuffer* _vertexBuffer;
 };
 #endif

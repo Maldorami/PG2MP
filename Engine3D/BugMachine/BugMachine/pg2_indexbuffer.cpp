@@ -1,7 +1,7 @@
 #include "pg2_indexbuffer.h"
 #include "Renderer.h"
 //---------------------------------------------------------------------------
-IndexBuffer::IndexBuffer (Renderer& rkRenderer, IDirect3DDevice9* pkDevice)
+IndexBuffer::IndexBuffer(Renderer& rkRenderer, IDirect3DDevice9* pkDevice)
 :
 m_uiIndexCount(0),
 m_IndexBuffer(NULL),

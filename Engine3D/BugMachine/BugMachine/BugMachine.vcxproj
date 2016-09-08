@@ -153,6 +153,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Mat.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="pg1_directinput.h" />
     <ClInclude Include="pg1_input.h" />
     <ClInclude Include="pg1_timer.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Entity2D.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="pg1_directinput.cpp" />
     <ClCompile Include="pg1_input.cpp" />
     <ClCompile Include="pg1_timer.cpp" />

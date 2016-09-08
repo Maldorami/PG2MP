@@ -16,7 +16,7 @@ extern const int ColorVertexType;
 //---------------------------------------------------------------------------
 class CustomVertexZ{
 public:
-	float x, y, z, u, v; 
+	float x, y, z, u, v;
 };
 //---------------------------------------------------------------------------
 enum Primitive{
@@ -36,6 +36,7 @@ enum MatrixType
 	World,
 	MatrixTypeCount
 };
+
 //---------------------------------------------------------------------------
 struct TexCoordVertex{
 	float x;

@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Text.h"
 #include "Camera.h"
+#include "Mesh.h"
 
 #define DLLexport __declspec(dllexport)
 

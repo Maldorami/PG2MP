@@ -1,17 +1,17 @@
 #ifndef PG2_VERTEXBUFFER_H
 #define PG2_VERTEXBUFFER_H
 //---------------------------------------------------------------------------
-#include <d3d9.h>
-#include <d3dx9.h>
 #include <cassert>
+#include "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/d3d9.h"
+#include "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/d3dx9.h"
 //---------------------------------------------------------------------------
 class Renderer;
 //---------------------------------------------------------------------------
-class VertexBuffer
+class  VertexBuffer
 {
 public:
-	VertexBuffer (Renderer& rkRenderer, IDirect3DDevice9* pkDevice, size_t uiVertexSize, unsigned int uiFVF);
-	~VertexBuffer ();
+	VertexBuffer(Renderer& rkRenderer, IDirect3DDevice9* pkDevice, size_t uiVertexSize, unsigned int uiFVF);
+	~VertexBuffer();
 
 	void bind ();
 	void setVertexData (const void* pakVertices, size_t uiVertexCount);

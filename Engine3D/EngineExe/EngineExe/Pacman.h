@@ -8,13 +8,10 @@ public:
 	void frame(Renderer& rkRenderer,Input& input, Timer& timer);
 	void deinit(){};
 
-private:
-	Animation walk;
-	Animation iddle;
-	Sprite player;
-	Map mapa;
-	Text timerText;
-
+private:	
+	Mesh* cube;
+	Mesh* piramide;
+	Mesh* quad;
 	Camera* cam;
 };
 #endif

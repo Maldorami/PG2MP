@@ -1,5 +1,7 @@
 #include"Renderer.h"
 #include"RenderTypes.h"
+#include "pg2_vertexbuffer.h"
+#include "pg2_indexbuffer.h"
 //---------------------------------------------------------------------------
 #include <d3d9.h>
 #pragma comment (lib, "d3d9.lib")
@@ -10,6 +12,14 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <math.h>
+
+D3DPRIMITIVETYPE primitiveTypes[Primitive::PrimitiveCount] = {
+	D3DPT_TRIANGLELIST,
+	D3DPT_TRIANGLESTRIP,
+	D3DPT_POINTLIST,
+	D3DPT_LINELIST,
+	D3DPT_LINESTRIP,
+	D3DPT_TRIANGLEFAN };
 //---------------------------------------------------------------------------
 bool Renderer::init(HWND hWnd)
 {
@@ -32,11 +42,7 @@ bool Renderer::init(HWND hWnd)
 
 	if (hWnd == NULL)
 		return false;
-
-
-	v_buffer = new VertexBuffer(d3ddev,sizeof(CustomVertex),CUSTOMFVF);
-	v_bufferS = new VertexBuffer(d3ddev, sizeof(CustomVertexZ), CUSTOMFVFT);
-
+	
 	d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	D3DVIEWPORT9 viewPort;
@@ -46,6 +52,7 @@ bool Renderer::init(HWND hWnd)
 
 	d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	d3ddev->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	d3ddev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
 	d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
@@ -54,7 +61,7 @@ bool Renderer::init(HWND hWnd)
 	float viewPortHeight = static_cast<float> (viewPort.Height);
 
 	D3DXMATRIX projectionMatrix;
-	D3DXMatrixPerspectiveFovLH(&projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, -10, 10.0f);
+	D3DXMatrixPerspectiveFovLH(&projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, -10.0f, 10000.0f);
 	d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
 
 	return true;	
@@ -63,19 +70,43 @@ bool Renderer::init(HWND hWnd)
 //---------------------------------------------------------------------------
 void Renderer::draw(CustomVertexZ* apkVertices, _D3DPRIMITIVETYPE ePrimitive, unsigned int uiVertexCount)
 {
-	v_bufferS->bind();
-	v_bufferS->draw(apkVertices, ePrimitive, uiVertexCount);
+	//v_bufferS->bind();
+	//v_bufferS->draw(apkVertices, ePrimitive, uiVertexCount);
 }
 //---------------------------------------------------------------------------
 void Renderer::draw(CustomVertex* apkVertices, _D3DPRIMITIVETYPE ePrimitive, unsigned int uiVertexCount)
 {
-	v_buffer->bind();
-	v_buffer->draw(apkVertices, ePrimitive, uiVertexCount);
+	//_vertexBuffer->bind();
+	//_vertexBuffer->draw(apkVertices, ePrimitive, uiVertexCount);
+}
+//---------------------------------------------------------------------------
+VertexBuffer* Renderer::createVertexBuffer(size_t uiVertexSize, unsigned int uiFVF){
+	VertexBuffer* vertexB = new VertexBuffer(*this, d3ddev, uiVertexSize, uiFVF);
+	return vertexB;
+}
+//---------------------------------------------------------------------------
+IndexBuffer* Renderer::createIndexBuffer(){
+	IndexBuffer* indexB = new IndexBuffer(*this, d3ddev);
+	return indexB;
+}
+//---------------------------------------------------------------------------
+void Renderer::setCurrentIndexBuffer(IndexBuffer* pkIndexBuffer){
+	_indexBuffer = pkIndexBuffer;
+}
+//---------------------------------------------------------------------------
+void Renderer::setCurrentVertexBuffer(VertexBuffer* pkVertexBuffer){
+	_vertexBuffer = pkVertexBuffer;
+}
+//---------------------------------------------------------------------------
+void Renderer::drawCurrentBuffers(Primitive ePrimitive){
+	_indexBuffer->bind();
+	_vertexBuffer->bind();
+	d3ddev->DrawIndexedPrimitive(primitiveTypes[ePrimitive], 0, 0, 8, 0, 12);
 }
 //---------------------------------------------------------------------------
 void Renderer::beginFrame(){
+	d3ddev->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 	d3ddev->BeginScene();
-	d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);	
 }
 //---------------------------------------------------------------------------
 void Renderer::endFrame(){
