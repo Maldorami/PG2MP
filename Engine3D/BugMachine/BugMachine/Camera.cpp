@@ -12,7 +12,7 @@ Camera::Camera(Renderer& renderer)
 	render(NULL),
 	posX(0),
 	posY(0),
-	posZ(-1),
+	posZ(0),
 	LAposX(0),
 	LAposY(0),
 	LAposZ(1.0f),

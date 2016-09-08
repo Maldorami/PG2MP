@@ -15,7 +15,7 @@ bool Pacman::init(Renderer& rendi){
 
 	// cube parameters
 	#define CUBESIZE 5.0f;
-	CustomVertex vertices[8];	
+	CustomVertex vertices[8];
 	vertices[0].x = -CUBESIZE;	vertices[0].y =  CUBESIZE;	vertices[0].z = -CUBESIZE;	vertices[0].color = D3DCOLOR_XRGB(0  ,	0  ,	255);    // vertex 0
 	vertices[1].x =  CUBESIZE;	vertices[1].y =  CUBESIZE;	vertices[1].z = -CUBESIZE;	vertices[1].color = D3DCOLOR_XRGB(0  ,	255,	0  );    // vertex 1
 	vertices[2].x = -CUBESIZE;	vertices[2].y = -CUBESIZE;	vertices[2].z = -CUBESIZE;	vertices[2].color = D3DCOLOR_XRGB(255,	0  ,	0  );	 // 2
@@ -45,7 +45,7 @@ bool Pacman::init(Renderer& rendi){
 	int verticesSize = ARRAYSIZE(vertices);
 	int indicesSize = ARRAYSIZE(indices);
 	cube->setMeshData(vertices, Primitive::TriangleList, verticesSize, indices, indicesSize);
-	cube->setPos(0, 0, 0);
+	cube->setPos(0, 0, -100);
 	cube->setScale(300, 300, 300);
 
 	// create the vertices using the CUSTOMVERTEX

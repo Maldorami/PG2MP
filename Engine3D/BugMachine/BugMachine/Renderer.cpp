@@ -32,6 +32,8 @@ bool Renderer::init(HWND hWnd)
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.hDeviceWindow = hWnd;
 	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+	d3dpp.EnableAutoDepthStencil = TRUE;
+	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 
 	d3d->CreateDevice(D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
@@ -52,16 +54,16 @@ bool Renderer::init(HWND hWnd)
 
 	d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	d3ddev->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-	d3ddev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
 	d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	d3ddev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
 
 
 	float viewPortWidth = static_cast<float> (viewPort.Width);
 	float viewPortHeight = static_cast<float> (viewPort.Height);
 
 	D3DXMATRIX projectionMatrix;
-	D3DXMatrixPerspectiveFovLH(&projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, -10.0f, 10000.0f);
+	D3DXMatrixPerspectiveFovLH(&projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, 1.0f, 1000000.0f);
 	d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
 
 	return true;	
