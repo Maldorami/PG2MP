@@ -94,8 +94,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;d3dx9d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;d3dx9d.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,6 +151,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity2D.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Importador.h" />
     <ClInclude Include="Mat.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="pg1_directinput.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity2D.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Importador.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="pg1_directinput.cpp" />
     <ClCompile Include="pg1_input.cpp" />

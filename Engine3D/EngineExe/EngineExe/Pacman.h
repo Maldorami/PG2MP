@@ -11,7 +11,8 @@ public:
 private:	
 	Mesh* cube;
 	Mesh* piramide;
-	Mesh* quad;
+	Mesh* imp;
+	Importador* importador;
 	Camera* cam;
 };
 #endif

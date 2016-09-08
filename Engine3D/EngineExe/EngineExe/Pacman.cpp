@@ -75,24 +75,9 @@ bool Pacman::init(Renderer& rendi){
 	piramide->setMeshData(piramideVertices, Primitive::TriangleStrip, ARRAYSIZE(piramideVertices), piramideIndices, ARRAYSIZE(piramideIndices));
 	piramide->setPos(0,1500, -100);
 	piramide->setScale(1000, 1000,1000);
-
-
-	quad = new Mesh(rendi);
-	struct CustomVertex quadVertices[4];
-		vertices[0].x = -CUBESIZE;	vertices[0].y = CUBESIZE;	vertices[0].z = 0;	vertices[0].color = D3DCOLOR_XRGB(0, 0, 255);    // vertex 0
-		vertices[1].x = CUBESIZE;	vertices[1].y = CUBESIZE;	vertices[1].z = 0;	vertices[1].color = D3DCOLOR_XRGB(0, 255, 0);    // vertex 1
-		vertices[2].x = -CUBESIZE;	vertices[2].y = -CUBESIZE;	vertices[2].z = 0;	vertices[2].color = D3DCOLOR_XRGB(255, 0, 0);	 // 2
-		vertices[3].x = CUBESIZE;	vertices[3].y = -CUBESIZE;	vertices[3].z = 0;	vertices[3].color = D3DCOLOR_XRGB(0, 255, 255);  // 3
-	// create the indices using an int array
-	unsigned short quadIndices[] =
-	{
-		0, 1, 2,
-		2, 1, 3
-	};
-	quad->setMeshData(quadVertices, Primitive::TriangleStrip, ARRAYSIZE(quadVertices), quadIndices, ARRAYSIZE(quadIndices));
-	quad->setPos(0, 0, 0);
-	quad->setScale(150, 150, 150);
-
+	
+	importador->ImportMesh("Assets\Cube.obj", *imp);
+	imp->setScale(100, 100, 100);
 
 	return true;
 }
@@ -127,7 +112,8 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	cam->pitch((float)input.mouseRelPosY() / 10);
 
 	cam->update();
-	cube->draw();
-	piramide->draw();
+	//cube->draw();
+	//piramide->draw();
+	imp->draw();
 }
 //---------------------------------------------------------------------------

@@ -1,7 +1,6 @@
 #include "Mesh.h"
 #include "pg2_indexbuffer.h"
 #include "pg2_vertexbuffer.h"
-
 Mesh::Mesh(Renderer& rkRenderer)
 :
 indexB(NULL),
@@ -29,6 +28,7 @@ void Mesh::setMeshData(const CustomVertex* pakVertices, Primitive ePrimitive,
 
 	primitive = ePrimitive;
 }
+
 void Mesh::draw(){
 	rendi.setMatrix(MatrixType::World, _transformationMatrix);
 	rendi.drawCurrentBuffers(primitive);

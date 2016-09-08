@@ -16,7 +16,6 @@ typedef interface ID3DXFont *LPD3DXFONT;
 typedef ID3DXFont* Font;
 
 #define DLLexport __declspec(dllexport)
-
 class Renderer{
 public:
 	DLLexport void draw(CustomVertexZ* apkVertices, _D3DPRIMITIVETYPE ePrimitive, unsigned int uiVertexCount);
@@ -51,5 +50,6 @@ private:
 
 	IndexBuffer* _indexBuffer;
 	VertexBuffer* _vertexBuffer;
+
 };
 #endif

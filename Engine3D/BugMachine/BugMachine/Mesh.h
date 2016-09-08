@@ -4,7 +4,6 @@
 #include "Entity2D.h"
 
 #define DLLexport __declspec(dllexport)
-
 class DLLexport Mesh : public Entity2D{
 
 	// constructor
@@ -16,7 +15,6 @@ public:
 	void setMeshData(const CustomVertex* pakVertices, Primitive ePrimitive,
 					size_t uiVertexCount, const unsigned short* pusIndices,
 					size_t uiIndexCount);
-
 	void draw();
 	void setTextureId(int iTextureId);
 
