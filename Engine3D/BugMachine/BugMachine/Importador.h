@@ -1,6 +1,8 @@
 #ifndef IMPORTADOR_H
 #define IMPORTADOR_H
+
 #include "Mesh.h"
+
 #define DLLexport __declspec(dllexport)
 class DLLexport Importador{
 public:

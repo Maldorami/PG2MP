@@ -71,12 +71,13 @@ bool Pacman::init(Renderer& rendi){
 		3, 2, 4,
 		2, 0, 4,
 	};
+
 	piramide = new Mesh(rendi);
 	piramide->setMeshData(piramideVertices, Primitive::TriangleStrip, ARRAYSIZE(piramideVertices), piramideIndices, ARRAYSIZE(piramideIndices));
-	piramide->setPos(0,1500, -100);
+	piramide->setPos(0,15000, -100);
 	piramide->setScale(1000, 1000,1000);
 	
-	importador->ImportMesh("Assets\Cube.obj", *imp);
+	importador->ImportMesh("Cube.obj", *imp);
 	imp->setScale(100, 100, 100);
 
 	return true;
@@ -112,8 +113,8 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	cam->pitch((float)input.mouseRelPosY() / 10);
 
 	cam->update();
-	//cube->draw();
-	//piramide->draw();
-	imp->draw();
+	cube->draw();
+	piramide->draw();
+	//imp->draw();
 }
 //---------------------------------------------------------------------------

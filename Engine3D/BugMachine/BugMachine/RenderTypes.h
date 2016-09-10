@@ -6,7 +6,7 @@
 #define CUSTOMFVF (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 #define CUSTOMFVFT (D3DFVF_XYZ | D3DFVF_TEX1)
 //---------------------------------------------------------------------------
-class CustomVertex{
+struct CustomVertex{
 public:
 	float x, y, z;
 	DWORD color;
