@@ -42,12 +42,12 @@ bool Pacman::init(Renderer& rendi){
 		2, 7, 6,
 	};
 
-	cube = new Mesh(rendi);
+	/*cube = new Mesh(rendi);
 	int verticesSize = ARRAYSIZE(vertices);
 	int indicesSize = ARRAYSIZE(indices);
 	cube->setMeshData(vertices, Primitive::TriangleList, verticesSize, indices, indicesSize);
 	cube->setPos(0, 0, -100);
-	cube->setScale(300, 300, 300);
+	cube->setScale(300, 300, 300);*/
 
 	// create the vertices using the CUSTOMVERTEX
 	struct CustomVertex piramideVertices[] =
@@ -73,11 +73,17 @@ bool Pacman::init(Renderer& rendi){
 	};
 
 	piramide = new Mesh(rendi);
-	piramide->setMeshData(piramideVertices, Primitive::TriangleStrip, ARRAYSIZE(piramideVertices), piramideIndices, ARRAYSIZE(piramideIndices));
+	importador->ImportMesh("Cube.obj", *piramide);
+	piramide->setPos(0, 500, -100);
+	piramide->setScale(100, 100, 100);
+
+	/*piramide->setMeshData(piramideVertices, Primitive::TriangleStrip, ARRAYSIZE(piramideVertices), piramideIndices, ARRAYSIZE(piramideIndices));
 	piramide->setPos(0,15000, -100);
-	piramide->setScale(1000, 1000,1000);
+	piramide->setScale(1000, 1000,1000);*/
 	
-	importador->ImportMesh("Cube.obj", *imp);
+	imp = new Mesh(rendi);
+	importador->ImportMesh("taurus.obj", *imp);
+	imp->setPos(0, 0, -100);
 	imp->setScale(100, 100, 100);
 
 	return true;
@@ -113,8 +119,8 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	cam->pitch((float)input.mouseRelPosY() / 10);
 
 	cam->update();
-	cube->draw();
+	//cube->draw();
 	piramide->draw();
-	//imp->draw();
+	imp->draw();
 }
 //---------------------------------------------------------------------------
