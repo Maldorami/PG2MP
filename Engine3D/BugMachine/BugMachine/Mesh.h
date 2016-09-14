@@ -1,22 +1,22 @@
 #ifndef MESH_H
 #define MESH_H
 #include "Renderer.h"
-#include "Entity2D.h"
+#include "Entity3D.h"
 
 #define DLLexport __declspec(dllexport)
-class DLLexport Mesh : public Entity2D{
+class Mesh : public Entity3D{
 
 	// constructor
 public:
-	Mesh(Renderer& rkRenderer);
-	~Mesh();
+	DLLexport Mesh(Renderer& rkRenderer);
+	DLLexport ~Mesh();
 
 	// rendering
-	void setMeshData(const CustomVertex* pakVertices, Primitive ePrimitive,
+	DLLexport void setMeshData(const CustomVertex* pakVertices, Primitive ePrimitive,
 					size_t uiVertexCount, const unsigned short* pusIndices,
 					size_t uiIndexCount);
-	void draw();
-	void setTextureId(int iTextureId);
+	DLLexport void draw();
+	DLLexport void setTextureId(int iTextureId);
 
 private:
 	IndexBuffer* indexB;

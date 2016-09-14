@@ -9,9 +9,9 @@ public:
 	void deinit(){};
 
 private:	
-	Mesh* cube;
-	Mesh* piramide;
-	Mesh* imp;
+	Mesh* cube1;
+	Mesh* cube2;
+	Mesh* cube3;
 	Importador* importador;
 	Camera* cam;
 };

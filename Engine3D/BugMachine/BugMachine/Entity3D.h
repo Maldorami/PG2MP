@@ -1,5 +1,5 @@
-#ifndef ENTITY2D_H
-#define ENTITY2D_H
+#ifndef ENTITY3D_H
+#define ENTITY3D_H
 
 #include "Mat.h"
 #include "Renderer.h"
@@ -7,10 +7,10 @@
 
 #define DLLexport __declspec(dllexport)
 
-class Entity2D{
+class Entity3D{
 public:
-	DLLexport Entity2D();
-	DLLexport virtual ~Entity2D();
+	DLLexport Entity3D();
+	DLLexport virtual ~Entity3D();
 	DLLexport void setPos(float fPosX, float fPosY, float fPosZ);
 	DLLexport void setRotation(float fRotation);
 	DLLexport void setRotation(float fRotationX, float fRotationY, float fRotationZ);
