@@ -1,46 +1,38 @@
-﻿Build started 9/14/2016 7:33:25 PM.
-     1>Project "C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 19/09/2016 12:45:30 p.m..
+     1>Project "C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /IC:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\..\Assimp\include\assimp /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\\" /Fd"C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Animation.cpp Camera.cpp Engine.cpp Entity3D.cpp Game.cpp Importador.cpp Mesh.cpp pg1_directinput.cpp pg1_input.cpp pg1_timer.cpp pg2_indexbuffer.cpp pg2_vertexbuffer.cpp Renderer.cpp Text.cpp tinyxml2.cpp Window.cpp
-         Window.cpp
-         tinyxml2.cpp
-         Text.cpp
-         Renderer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /IC:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\Assimp\include\assimp /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\\" /Fd"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Engine.cpp Entity3D.cpp Game.cpp Importador.cpp Mesh.cpp Renderer.cpp Text.cpp pg2_indexbuffer.cpp pg2_vertexbuffer.cpp
          pg2_vertexbuffer.cpp
          pg2_indexbuffer.cpp
-         pg1_timer.cpp
-         pg1_input.cpp
-         pg1_directinput.cpp
+         Text.cpp
+         Renderer.cpp
          Mesh.cpp
          Importador.cpp
-     1>c:\users\ale3p\desktop\pg2mp\engine3d\bugmachine\bugmachine\importador.cpp(18): warning C4018: '<' : signed/unsigned mismatch
          Game.cpp
          Entity3D.cpp
          Engine.cpp
          Camera.cpp
-         Animation.cpp
          Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\..\Assimp\lib32 d3d9.lib d3dx9.lib d3dx9d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib" /MACHINE:X86 /DLL C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Animation.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Camera.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Engine.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Entity3D.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Game.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Importador.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Mesh.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_directinput.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_input.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_timer.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_indexbuffer.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_vertexbuffer.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Renderer.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Text.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\tinyxml2.obj
-         C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\tmp\Win32\Debug\Window.obj
-            Creating library C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib and object C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.exp
-         BugMachine.vcxproj -> C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
-     1>Done Building Project "C:\Users\ale3p\Desktop\PG2MP\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" (Rebuild target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\Assimp\lib32 d3d9.lib d3dx9.lib d3dx9d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.lib" /MACHINE:X86 /DLL C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Animation.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Camera.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Engine.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Entity3D.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Game.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Importador.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Mesh.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_directinput.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_input.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg1_timer.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_indexbuffer.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\pg2_vertexbuffer.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Renderer.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Text.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\tinyxml2.obj
+         C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\tmp\Win32\Debug\Window.obj
+         BugMachine.vcxproj -> C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\\bin\Win32\Debug\BugMachine.dll
+     1>Done Building Project "C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\BugMachine\BugMachine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.03
+Time Elapsed 00:00:09.74

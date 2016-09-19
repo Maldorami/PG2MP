@@ -7,6 +7,6 @@
 class DLLexport Importador{
 public:
 	Importador();
-	bool ImportMesh(std::string fileName,Mesh& mesh);
+	bool ImportMesh(std::string fileName, Mesh& mesh);
 };
 #endif IMPORTADOR_H

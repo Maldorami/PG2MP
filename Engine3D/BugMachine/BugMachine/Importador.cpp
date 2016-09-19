@@ -15,7 +15,7 @@ bool Importador::ImportMesh(std::string fileName, Mesh& _mesh){
 	const aiMesh* mesh = pScene->mMeshes[0];
 
 	CustomVertex* vertices = new CustomVertex[pScene->mMeshes[0]->mNumVertices];
-	for (int v_i = 0; v_i < mesh->mNumVertices; v_i++)
+	for (unsigned v_i = 0; v_i < mesh->mNumVertices; v_i++)
 		{			
 				CustomVertex* vertice = new CustomVertex();
 				vertice->x = mesh->mVertices[v_i].x;
