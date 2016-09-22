@@ -104,7 +104,7 @@ void Renderer::drawCurrentBuffers(Primitive ePrimitive){
 	_indexBuffer->bind();
 	_vertexBuffer->bind();
 
-	d3ddev->DrawIndexedPrimitive(primitiveTypes[ePrimitive], 0, 0, _indexBuffer->indexCount(), 0, _indexBuffer->indexCount() / 3);
+	d3ddev->DrawIndexedPrimitive(primitiveTypes[ePrimitive], 0, 0, _vertexBuffer->vertexCount(), 0, _indexBuffer->indexCount() / 3);
 }
 //---------------------------------------------------------------------------
 void Renderer::beginFrame(){

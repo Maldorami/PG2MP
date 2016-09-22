@@ -1,8 +1,8 @@
 #ifndef PG2_INDEXBUFFER_H
 #define PG2_INDEXBUFFER_H
 //---------------------------------------------------------------------------
-#include "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h"
-#include "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9.h"
+#include <d3d9.h>
+#include <d3dx9.h>
 #include <cassert>
 //---------------------------------------------------------------------------
 class Renderer;

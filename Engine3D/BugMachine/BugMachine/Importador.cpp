@@ -32,7 +32,6 @@ bool Importador::ImportMesh(std::string fileName, Mesh& _mesh){
 		indices[i * 3 + 1] = mesh->mFaces[i].mIndices[1];
 		indices[i * 3 + 2] = mesh->mFaces[i].mIndices[2];
 	}
-
 	_mesh.setMeshData(vertices, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);
 	return true;
 }

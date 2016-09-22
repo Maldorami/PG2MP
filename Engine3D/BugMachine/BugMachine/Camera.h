@@ -1,9 +1,12 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "Renderer.h"
+
 #define DLLexport __declspec(dllexport)
 
-#include "Renderer.h"
+struct D3DXVECTOR3;
+typedef D3DXVECTOR3* Vector3;
 
 class Camera{
 public:
@@ -35,11 +38,11 @@ public:
 	float UPposY;
 	float UPposZ;
 
-	D3DXVECTOR3 _up;
-	D3DXVECTOR3 _lookAt;
-	D3DXVECTOR3 _forward;
-	D3DXVECTOR3 _right;
-	D3DXVECTOR3 _pos;
+	Vector3 _up;
+	Vector3 _lookAt;
+	Vector3 _forward;
+	Vector3 _right;
+	Vector3 _pos;
 
 	Matrix	_localView;
 

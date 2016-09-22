@@ -5,8 +5,7 @@
 #include "Mat.h"
 #include <Windows.h>
 #include "RenderTypes.h"
-#include "pg2_indexbuffer.h"
-#include "pg2_vertexbuffer.h"
+
 
 struct IDirect3D9;
 struct IDirect3DDevice9;
@@ -14,6 +13,9 @@ struct IDirect3DVertexBuffer9;
 typedef interface ID3DXFont ID3DXFont;
 typedef interface ID3DXFont *LPD3DXFONT;
 typedef ID3DXFont* Font;
+
+class IndexBuffer;
+class VertexBuffer;
 
 #define DLLexport __declspec(dllexport)
 class Renderer{
@@ -24,6 +26,7 @@ public:
 
 	Renderer(){};
 	~Renderer();
+
 	bool init(HWND hwnd);
 	void beginFrame();
 	void endFrame();
@@ -34,8 +37,6 @@ public:
 	void setCurrentTexture(const Texture& texture);
 
 	IDirect3DDevice9* d3ddev;
-
-	//3D
 	VertexBuffer* createVertexBuffer(size_t uiVertexSize, unsigned int uiFVF);
 	IndexBuffer* createIndexBuffer();
 	void setCurrentIndexBuffer(IndexBuffer* pkIndexBuffer);
@@ -48,8 +49,8 @@ private:
 	IDirect3D9* d3d;
 	std::vector<Texture> textures;
 
-	IndexBuffer* _indexBuffer;
 	VertexBuffer* _vertexBuffer;
+	IndexBuffer* _indexBuffer;
 
 };
 #endif

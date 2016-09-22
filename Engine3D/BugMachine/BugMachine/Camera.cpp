@@ -19,11 +19,11 @@ Camera::Camera(Renderer& renderer)
 	UPposX(0),
 	UPposY(1.0),
 	UPposZ(0),
-	_up(0.0f, 1.0f, 0.0f),
-	_forward(0.0f, 0.0f, 1.0f),
-	_right(1.0f, 0.0f, 0.0f),
-	_lookAt(0.0f, 0.0f, 1.0f),
-	_pos(0.0f, 0.0f, -1000.0f),
+	_up(new D3DXVECTOR3 (0.0f, 1.0f, 0.0f)),
+	_forward(new D3DXVECTOR3(0.0f, 0.0f, 1.0f)),
+	_right(new D3DXVECTOR3(1.0f, 0.0f, 0.0f)),
+	_lookAt(new D3DXVECTOR3(0.0f, 0.0f, 1.0f)),
+	_pos(new D3DXVECTOR3(0.0f, 0.0f, -1000.0f)),
 	_localView(new D3DXMATRIX())
 {
 	setRender(renderer);
@@ -34,10 +34,10 @@ Camera::~Camera(){
 }
 void Camera::update(){
 	// Actualizo loockAt
-	_lookAt = _pos + _forward;
+	*_lookAt = *_pos + *_forward;
 
 	// Calcular la nueva matrix de view
-	D3DXMatrixLookAtLH(_localView, &_pos, &_lookAt, &_up);
+	D3DXMatrixLookAtLH(_localView, _pos, _lookAt, _up);
 
 	// Setear la transformacion
 	render->d3ddev->SetTransform(D3DTS_VIEW, _localView);
@@ -50,8 +50,8 @@ void Camera::roll(float angle){
 	}
 	
 	D3DXMATRIX rotation;
-	D3DXMatrixRotationAxis(&rotation, &_forward, D3DXToRadian(angle));
-	D3DXVec3TransformNormal(&_right, &_right, &rotation);
+	D3DXMatrixRotationAxis(&rotation, _forward, D3DXToRadian(angle));
+	D3DXVec3TransformNormal(_right, _right, &rotation);
 	//D3DXVec3TransformNormal(&_up, &_up, &rotation);
 
 	update();
@@ -64,10 +64,10 @@ void Camera::pitch(float angle){
 	}
 
 	D3DXMATRIX rotation;
-	D3DXMatrixRotationAxis(&rotation, &_right, D3DXToRadian(angle));
+	D3DXMatrixRotationAxis(&rotation, _right, D3DXToRadian(angle));
 	
 	//D3DXVec3TransformNormal(&_up, &_up, &rotation);
-	D3DXVec3TransformNormal(&_forward, &_forward, &rotation);
+	D3DXVec3TransformNormal(_forward, _forward, &rotation);
 
 	update();
 }
@@ -79,26 +79,26 @@ void Camera::yaw(float angle){
 	}
 
 	D3DXMATRIX rotation;
-	D3DXMatrixRotationAxis(&rotation, &_up, D3DXToRadian(angle));
-	D3DXVec3TransformNormal(&_right, &_right, &rotation);
-	D3DXVec3TransformNormal(&_forward, &_forward, &rotation);
+	D3DXMatrixRotationAxis(&rotation, _up, D3DXToRadian(angle));
+	D3DXVec3TransformNormal(_right, _right, &rotation);
+	D3DXVec3TransformNormal(_forward, _forward, &rotation);
 
 	update();
 }
 void Camera::walk(float distance){
-	_pos += _forward * distance;
+	*_pos += *_forward * distance;
 
 	update();
 }
 
 void Camera::strafe(float distance){
-	_pos += _right * distance;
+	*_pos += *_right * distance;
 
 	update();
 }
 
 void Camera::fly(float distance){
-	_pos += _up * distance;
+	*_pos += *_up * distance;
 
 	update();
 } 
