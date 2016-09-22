@@ -1,8 +1,8 @@
 #include "Importador.h"
 
-#include "../include/assimp/Importer.hpp"
-#include "../include/assimp/scene.h"
-#include "../include/assimp/postprocess.h"
+#include "Importer.hpp"
+#include "scene.h"
+#include "postprocess.h"
 #pragma comment (lib, "assimp.lib")
 
 Importador::Importador(){}
