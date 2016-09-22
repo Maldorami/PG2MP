@@ -1,17 +1,14 @@
-﻿Build started 19/09/2016 12:45:39 p.m..
-     1>Project "C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\EngineExe\EngineExe\EngineExe.vcxproj" on node 2 (Build target(s)).
+﻿Build started 9/21/2016 11:01:50 PM.
+     1>Project "C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\EngineExe\EngineExe\EngineExe.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\BugMachine\ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt EngineTest.cpp Pacman.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\BugMachine\..\BugMachine\BugMachine\\" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Pacman.cpp
          Pacman.cpp
-         EngineTest.cpp
-         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\ BugMachine.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.lib" /MACHINE:X86 Debug\EngineTest.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\\" BugMachine.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.lib" /MACHINE:X86 Debug\EngineTest.obj
          Debug\Pacman.obj
-            Creating library C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.lib and object C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.exp
-         EngineExe.vcxproj -> C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.exe
-     1>Done Building Project "C:\Users\Ramiro\Desktop\PG2MP.git\trunk\Engine3D\EngineExe\EngineExe\EngineExe.vcxproj" (Build target(s)).
+         EngineExe.vcxproj -> C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\BugMachine\..\BugMachine\bin\Win32\Debug\EngineExe.exe
+     1>Done Building Project "C:\Users\ale3p\Desktop\Game Develop\PG2MP\Engine3D\EngineExe\EngineExe\EngineExe.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.57
+Time Elapsed 00:00:01.11

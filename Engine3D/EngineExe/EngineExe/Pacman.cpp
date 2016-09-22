@@ -47,9 +47,9 @@ bool Pacman::init(Renderer& rendi){
 	cam->update();
 
 	cube1 = new Mesh(rendi);
-	importador->ImportMesh("valla.obj", *cube1);
-	cube1->setPos(0, 500, -100);
-	cube1->setScale(100, 100, 100);
+	importador->ImportMesh("teapot.obj", *cube1);
+	cube1->setPos(0, 200, -100);
+	cube1->setScale(5, 5, 5);
 	
 	cube2 = new Mesh(rendi);
 	importador->ImportMesh("taurus.obj", *cube2);
