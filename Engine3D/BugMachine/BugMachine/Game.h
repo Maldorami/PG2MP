@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Importador.h"
+#include "Node.h"
 
 #define DLLexport __declspec(dllexport)
 

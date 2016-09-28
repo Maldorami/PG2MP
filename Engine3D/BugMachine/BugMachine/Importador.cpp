@@ -14,17 +14,6 @@ bool Importador::ImportMesh(std::string fileName, Mesh& _mesh){
 	// aiProcess_CalcTangentSpace |aiProcess_Triangulate |	aiProcess_JoinIdenticalVertices |	aiProcess_SortByPType
 	const aiMesh* mesh = pScene->mMeshes[0];
 
-	CustomVertex* vertices = new CustomVertex[pScene->mMeshes[0]->mNumVertices];
-	for (unsigned v_i = 0; v_i < mesh->mNumVertices; v_i++)
-		{			
-				CustomVertex* vertice = new CustomVertex();
-				vertice->x = mesh->mVertices[v_i].x;
-				vertice->y = mesh->mVertices[v_i].y;
-				vertice->z = mesh->mVertices[v_i].z;
-				vertice->color = D3DCOLOR_XRGB(50, 50, 50);
-				vertices[v_i] = *vertice;
-	}
-
 	unsigned short* indices = new unsigned short[mesh->mNumFaces * 3];
 	for (unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
@@ -32,6 +21,20 @@ bool Importador::ImportMesh(std::string fileName, Mesh& _mesh){
 		indices[i * 3 + 1] = mesh->mFaces[i].mIndices[1];
 		indices[i * 3 + 2] = mesh->mFaces[i].mIndices[2];
 	}
-	_mesh.setMeshData(vertices, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);
+
+	CustomVertexZ* verticesT = new CustomVertexZ[mesh->mNumVertices];
+	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+	{
+			CustomVertexZ* vertice = new CustomVertexZ();
+			vertice->x = mesh->mVertices[i].x;
+			vertice->y = mesh->mVertices[i].y;
+			vertice->z = mesh->mVertices[i].z;
+			vertice->u = mesh->mTextureCoords[0][i].x;
+			vertice->v = mesh->mTextureCoords[0][i].y;
+
+			verticesT[i] = *vertice;						
+	}
+
+	_mesh.setMeshData(verticesT, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);
 	return true;
 }

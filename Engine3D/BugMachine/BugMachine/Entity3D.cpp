@@ -15,6 +15,7 @@ _scaleX(1.0f),
 _scaleY(1.0f),
 _scaleZ(1.0f),
 _flipX(false),
+_parent(NULL),
 _transformationMatrix(new D3DXMATRIX())
 {
 	updateLocalTransformation();
@@ -92,6 +93,11 @@ float Entity3D::rotationZ(){
 }
 //---------------------------------------------------------------------------
 void Entity3D::updateLocalTransformation(){
+
+	if (_parent){
+		D3DXMatrixIdentity(_transformationMatrix);
+		D3DXMatrixMultiply(_transformationMatrix, _parent->_transformationMatrix, _transformationMatrix);
+	}
 
 	D3DXMATRIX traslatrionMat;
 	D3DXMatrixTranslation(&traslatrionMat, _posX, _posY, _posZ);

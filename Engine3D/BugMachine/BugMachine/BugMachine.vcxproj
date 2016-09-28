@@ -154,6 +154,7 @@
     <ClInclude Include="Importador.h" />
     <ClInclude Include="Mat.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="pg1_directinput.h" />
     <ClInclude Include="pg1_input.h" />
     <ClInclude Include="pg1_timer.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Importador.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="pg1_directinput.cpp" />
     <ClCompile Include="pg1_input.cpp" />
     <ClCompile Include="pg1_timer.cpp" />

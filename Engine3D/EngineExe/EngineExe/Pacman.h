@@ -8,11 +8,16 @@ public:
 	void frame(Renderer& rkRenderer,Input& input, Timer& timer);
 	void deinit(){};
 
-private:	
+private:
+	Node* nodo1;
+	Node* nodo2;
+
 	Mesh* cube1;
 	Mesh* cube2;
 	Mesh* cube3;
+
 	Importador* importador;
+
 	Camera* cam;
 };
 #endif

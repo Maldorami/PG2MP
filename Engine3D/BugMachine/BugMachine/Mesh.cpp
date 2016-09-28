@@ -25,12 +25,31 @@ void Mesh::setMeshData(const CustomVertex* pakVertices, Primitive ePrimitive,
 	primitive = ePrimitive;
 }
 
+void Mesh::setMeshData(const CustomVertexZ* pakVertices, Primitive ePrimitive,
+	size_t uiVertexCount, const unsigned short* pusIndices,
+	size_t uiIndexCount)
+{
+	vertexB = rendi.createVertexBuffer(sizeof(CustomVertexZ), CUSTOMFVFT);
+	indexB = rendi.createIndexBuffer();
+
+	vertexB->setVertexData(pakVertices, uiVertexCount);
+	indexB->setIndexData(pusIndices, uiIndexCount);
+
+	rendi.setCurrentVertexBuffer(vertexB);
+	rendi.setCurrentIndexBuffer(indexB);
+
+	primitive = ePrimitive;
+}
+
 void Mesh::draw(){
+	rendi.setCurrentTexture(_texture);
 	rendi.setMatrix(MatrixType::World, _transformationMatrix);
 	rendi.drawCurrentBuffers(primitive);
 }
 
-void Mesh::setTextureId(int iTextureId){}
+void Mesh::setTextureId(Texture texturrah){
+	_texture = texturrah;
+}
 
 Mesh::~Mesh(){
 	delete indexB;

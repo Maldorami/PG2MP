@@ -26,6 +26,8 @@ public:
 	DLLexport float scaleY();
 	DLLexport float scaleZ();
 
+	DLLexport virtual void draw() = 0;
+
 private:
 	float _posX, _posY, _posZ;
 	float _rotationX, _rotationY, _rotationZ;
@@ -35,6 +37,7 @@ private:
 	void updateLocalTransformation();
 
 protected:
+	Entity3D* _parent;
 	Matrix _transformationMatrix;
 };
 #endif

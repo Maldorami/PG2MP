@@ -141,27 +141,22 @@ void Renderer::setMatrix(MatrixType matris, const Matrix& Matrix){
 }
 //---------------------------------------------------------------------------
 const Texture Renderer::loadTexture(const std::string& fileName, int colorKey){
-	IDirect3DTexture9* texture = NULL;
+	Texture texture = NULL;
 
-	HRESULT hr = D3DXCreateTextureFromFileEx(
-		d3ddev,
+	HRESULT hr = D3DXCreateTextureFromFileEx(d3ddev,
 		fileName.c_str(),
-		0, 0, 0, 0,
-		D3DFMT_UNKNOWN,
-		D3DPOOL_MANAGED,
-		D3DX_FILTER_NONE,
-		D3DX_FILTER_NONE,
+		D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2,
+		0, 0,	D3DFMT_UNKNOWN, D3DPOOL_MANAGED,
+		D3DX_FILTER_NONE, D3DX_FILTER_NONE,
 		colorKey,
 		NULL,
 		NULL,
-		&texture
-		);
+		&texture);
 
 	if (hr != D3D_OK){
 		return NoTexture;
 	}
-	else{
-		
+	else{		
 		textures.push_back(texture);
 		return texture;
 	}
