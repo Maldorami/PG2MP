@@ -1,5 +1,6 @@
 #include "Entity3D.h"
 #include "Renderer.h"
+#include "Node.h"
 #include <d3dx9.h>
 #include <algorithm>
 //---------------------------------------------------------------------------
@@ -16,14 +17,15 @@ _scaleY(1.0f),
 _scaleZ(1.0f),
 _flipX(false),
 _parent(NULL),
-_transformationMatrix(new D3DXMATRIX())
+_WordtransformationMatrix(new D3DXMATRIX()),
+_LocaltransformationMatrix(new D3DXMATRIX())
 {
 	updateLocalTransformation();
 }
 //---------------------------------------------------------------------------
 Entity3D::~Entity3D(){
-	delete _transformationMatrix;
-	_transformationMatrix = NULL;
+	delete _WordtransformationMatrix;
+	_WordtransformationMatrix = NULL;
 }
 //---------------------------------------------------------------------------
 void Entity3D::setPos(float posX, float posY, float posZ){
@@ -94,11 +96,6 @@ float Entity3D::rotationZ(){
 //---------------------------------------------------------------------------
 void Entity3D::updateLocalTransformation(){
 
-	if (_parent){
-		D3DXMatrixIdentity(_transformationMatrix);
-		D3DXMatrixMultiply(_transformationMatrix, _parent->_transformationMatrix, _transformationMatrix);
-	}
-
 	D3DXMATRIX traslatrionMat;
 	D3DXMatrixTranslation(&traslatrionMat, _posX, _posY, _posZ);
 
@@ -114,11 +111,24 @@ void Entity3D::updateLocalTransformation(){
 	D3DXMATRIX scaleMat;
 	D3DXMatrixScaling(&scaleMat, _scaleX, _scaleY, _scaleZ);
 
-	D3DXMatrixIdentity(_transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix, &traslatrionMat, _transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix, &rotationMatX, _transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix, &rotationMatY, _transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix, &rotationMatZ, _transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix, &scaleMat, _transformationMatrix);
+	D3DXMatrixIdentity(_LocaltransformationMatrix);
+	D3DXMatrixMultiply(_LocaltransformationMatrix, &traslatrionMat, _LocaltransformationMatrix);
+	D3DXMatrixMultiply(_LocaltransformationMatrix, &rotationMatX, _LocaltransformationMatrix);
+	D3DXMatrixMultiply(_LocaltransformationMatrix, &rotationMatY, _LocaltransformationMatrix);
+	D3DXMatrixMultiply(_LocaltransformationMatrix, &rotationMatZ, _LocaltransformationMatrix);
+	D3DXMatrixMultiply(_LocaltransformationMatrix, &scaleMat, _LocaltransformationMatrix);
+
+	//updateWordTransformation();
 }
 //---------------------------------------------------------------------------
+void Entity3D::updateWordTransformation(){
+	if (_parent){
+		D3DXMatrixMultiply(_WordtransformationMatrix, _LocaltransformationMatrix, _parent->_WordtransformationMatrix);
+	}
+	else
+		_WordtransformationMatrix = _LocaltransformationMatrix;
+}
+//---------------------------------------------------------------------------
+void Entity3D::setParent(Node& parent){
+	_parent = &parent;
+}

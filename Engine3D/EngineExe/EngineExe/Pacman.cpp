@@ -57,16 +57,23 @@ bool Pacman::init(Renderer& rendi){
 	cube2 = new Mesh(rendi);
 	importador->ImportMesh("taurus.obj", *cube2);
 	cube2->setTextureId(rendi.loadTexture("Assets\\taurusTexture.jpg", 0));
-	cube2->setPos(0, 0, -100);
+	cube2->setPos(0, -100, 0);
 	cube2->setScale(100, 100, 100);
 
+	cube3 = new Mesh(rendi);
+	importador->ImportMesh("valla.obj", *cube3);
+	cube3->setTextureId(rendi.loadTexture("Assets\\taurusTexture.jpg", 0));
+	cube3->setPos(0, 0, 0);
+	cube3->setScale(20, 20, 20);
 
 	nodo1 = new Node();
 	nodo2 = new Node();
 
-	nodo1->AddChild(cube1);
 	nodo1->AddChild(nodo2);
+	nodo2->AddChild(cube1);
 	nodo2->AddChild(cube2);
+	nodo1->AddChild(cube3);
+	
 	
 	return true;
 }
@@ -74,14 +81,44 @@ bool Pacman::init(Renderer& rendi){
 void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	cameraControll(input, timer, cam);
 	
-	if (input.keyDown(input.KEY_1)){
-		nodo1->setPos(nodo1->posX(), nodo1->posY() + 10, nodo1->posZ());
+	if (input.keyDown(input.KEY_O)){
+		nodo1->setRotation(nodo1->rotationX() + 0.005f, nodo1->rotationY(), nodo1->rotationZ());
 	}
-	if (input.keyDown(input.KEY_2)){
-		nodo1->setPos(nodo1->posX(), nodo1->posY() - 10, nodo1->posZ());
+	if (input.keyDown(input.KEY_P)){
+		nodo1->setRotation(nodo1->rotationX() - 0.005f, nodo1->rotationY(), nodo1->rotationZ());
+	}
+	if (input.keyDown(input.KEY_K)){
+		nodo2->setRotation(nodo2->rotationX() + 0.005f, nodo2->rotationY(), nodo2->rotationZ());
+	}
+	if (input.keyDown(input.KEY_L)){
+		nodo2->setRotation(nodo2->rotationX() - 0.005f, nodo2->rotationY(), nodo2->rotationZ());
+	}
+	if (input.keyDown(input.KEY_N)){
+		cube3->setRotation(cube3->rotationX() + 0.005f, cube3->rotationY(), cube3->rotationZ());
+	}
+	if (input.keyDown(input.KEY_M)){
+		cube3->setRotation(cube3->rotationX() - 0.005f, cube3->rotationY(), cube3->rotationZ());
 	}
 
+	if (input.keyDown(input.KEY_I)){
+		cube1->setPos(cube1->posX(), cube1->posY() + 1, cube1->posZ());
+	}
+	if (input.keyDown(input.KEY_U)){
+		cube1->setPos(cube1->posX(), cube1->posY() - 1, cube1->posZ());
+	}
+
+	nodo1->updateWordTransformation();
 	nodo1->draw();
+
+	if (input.keyDown(input.KEY_Y)){
+		std::cout << "Nodo1.y = " << nodo1->posY() << " | " << "Cube1.y = " << cube1->posY() << std::endl;
+	}
+
+	if (input.keyDown(input.KEY_U)){
+		std::cout << "Nodo2.y = " << nodo2->posY() << " | " << "Cube2.y = " << cube2->posY() << std::endl;
+	}
+
+	
 
 	cam->update();
 	input.acquire();

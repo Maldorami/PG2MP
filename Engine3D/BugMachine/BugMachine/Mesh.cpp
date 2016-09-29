@@ -43,7 +43,7 @@ void Mesh::setMeshData(const CustomVertexZ* pakVertices, Primitive ePrimitive,
 
 void Mesh::draw(){
 	rendi.setCurrentTexture(_texture);
-	rendi.setMatrix(MatrixType::World, _transformationMatrix);
+	rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
 	rendi.drawCurrentBuffers(primitive);
 }
 

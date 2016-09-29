@@ -5,6 +5,8 @@
 #include "Renderer.h"
 #include "pg1_timer.h"
 
+class Node;
+
 #define DLLexport __declspec(dllexport)
 
 class Entity3D{
@@ -28,16 +30,22 @@ public:
 
 	DLLexport virtual void draw() = 0;
 
+	DLLexport void setParent(Node& parent);
+
+	virtual void updateWordTransformation();
+	Node* _parent;
+
 private:
 	float _posX, _posY, _posZ;
 	float _rotationX, _rotationY, _rotationZ;
 	float _scaleX, _scaleY, _scaleZ;
 	bool _flipX;
-
 	void updateLocalTransformation();
+	
 
 protected:
-	Entity3D* _parent;
-	Matrix _transformationMatrix;
+	
+	Matrix _WordtransformationMatrix;
+	Matrix _LocaltransformationMatrix;
 };
 #endif
