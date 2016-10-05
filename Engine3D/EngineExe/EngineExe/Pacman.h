@@ -12,9 +12,9 @@ private:
 	Node* nodo1;
 	Node* nodo2;
 
-	Mesh* cube1;
-	Mesh* cube2;
-	Mesh* cube3;
+	Mesh* teapot;
+	Mesh* taurus;
+	Mesh* valla;
 
 	Importador* importador;
 
