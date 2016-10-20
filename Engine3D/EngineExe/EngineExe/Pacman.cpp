@@ -47,6 +47,9 @@ bool Pacman::init(Renderer& rendi){
 	cam->update();
 	///////////////////////////////
 
+	scene1 = importador->ImportScene("asdasd.obj", rendi);
+	
+
 	teapot = new Mesh(rendi);
 	importador->ImportMesh("teapot.obj", *teapot);
 	teapot->setTextureId(rendi.loadTexture("Assets\\teapotTexture.jpg", 0));
@@ -120,8 +123,15 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	/*if (input.keyDown(input.KEY_Y)) std::cout << "Nodo1.y = " << nodo1->posY() << " | " << "Cube1.y = " << teapot->posY() << std::endl;
 	if (input.keyDown(input.KEY_U))	std::cout << "Nodo2.y = " << nodo2->posY() << " | " << "Cube2.y = " << taurus->posY() << std::endl;*/
 
-	nodo1->updateWordTransformation();
-	nodo1->draw();
+	for (int i = 0; i < scene1.size(); i++)
+	{
+		scene1[i]->updateWordTransformation();
+		scene1[i]->draw();
+		scene1[i]->setTextureId(renderer.loadTexture("Assets\\teapotTexture.jpg", 0));
+	}
+
+	//nodo1->updateWordTransformation();
+	//nodo1->draw();
 	cam->update();
 	input.acquire();
 }

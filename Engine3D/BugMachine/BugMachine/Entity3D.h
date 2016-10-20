@@ -32,7 +32,7 @@ public:
 
 	DLLexport void setParent(Node& parent);
 
-	virtual void updateWordTransformation();
+	DLLexport virtual void updateWordTransformation();
 	Node* _parent;
 
 private:

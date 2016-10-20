@@ -10,7 +10,8 @@ public:
 	DLLexport void AddChild(Entity3D* child);
 	DLLexport void draw();
 	DLLexport void updateWordTransformation();
-	DLLexport void removeChild(Entity3D* pkChild);
+	DLLexport void removeChild(Entity3D* pkChild);
+
 
 private:
 	std::vector<Entity3D*> _childs;
