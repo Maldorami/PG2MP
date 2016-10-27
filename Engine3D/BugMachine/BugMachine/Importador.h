@@ -4,10 +4,11 @@
 #include <vector>
 
 #define DLLexport __declspec(dllexport)
-class DLLexport Importador{
+class Importador{
 public:
-	Importador(Renderer& rkRenderer);
-	bool importScene(std::string rkFilename, Node& orkSceneRoot);
+	DLLexport Importador(Renderer& rkRenderer);
+	DLLexport bool importScene(std::string rkFilename, Node& orkSceneRoot);
+
 	Renderer rendi;
 
 };

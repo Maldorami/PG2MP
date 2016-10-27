@@ -13,7 +13,7 @@ public:
 	DLLexport void removeChild(Entity3D* pkChild);
 
 
-private:
+//private:
 	std::vector<Entity3D*> _childs;
 };
 

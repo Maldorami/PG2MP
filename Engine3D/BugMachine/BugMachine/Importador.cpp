@@ -17,15 +17,14 @@ bool Importador::importScene(std::string fileName, Node& orkSceneRoot){
 	fileName = "Assets\\" + fileName;
 	const aiScene* pScene = Importer.ReadFile(fileName, aiProcess_Triangulate);
 	// aiProcess_CalcTangentSpace |aiProcess_Triangulate |	aiProcess_JoinIdenticalVertices |	aiProcess_SortByPType
-	for (int i = 0; i < pScene->mRootNode->mNumChildren; i++)
-	{	
-		getChild(*pScene->mRootNode->mChildren[i], *pScene, orkSceneRoot, rendi);
-	}
+		
+	getChild(*pScene->mRootNode, *pScene, orkSceneRoot, rendi);
+
 	return true;
 }
 
 void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi){
-	for (int i = 0; i < node.mNumMeshes; i++)
+	for (unsigned int i = 0; i < node.mNumMeshes; i++)
 	{
 		const aiMesh* mesh = scene.mMeshes[node.mMeshes[i]];
 
@@ -50,18 +49,44 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 			verticesT[i] = *vertice;
 		}
 		Mesh* _mesh = new Mesh(rendi);
+
+		aiVector3t<float> scale;
+		aiQuaterniont<float> rotation;
+		aiVector3t<float> position;
+		node.mTransformation.Decompose(scale, rotation, position);
+		_mesh->setScale(scale.x, scale.y, scale.z);
+		_mesh->setRotation(rotation.x, rotation.y, rotation.z);
+		_mesh->setPos(position.x, position.y, position.z);
+
+		aiString path;
+		if (scene.mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &path) == AI_SUCCESS){
+			_mesh->setTextureId(rendi.loadTexture(path.data, D3DCOLOR_XRGB(0, 255, 0)));
+		}
+
 		_mesh->setMeshData(verticesT, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);
 		orkSceneRoot.AddChild(_mesh);
 		}
 
-		if (node.mNumChildren>0)
+		if (node.mNumChildren > 0)
 		{
-			Node* _node = new Node();
-			for (int i = 0; i < node.mNumChildren; i++)
+			for (unsigned int i = 0; i < node.mNumChildren; i++)
 			{
+				Node* _node = new Node();
 				orkSceneRoot.AddChild(_node);
+
+				aiVector3t<float> scale;
+				aiQuaterniont<float> rotation;
+				aiVector3t<float> position;
+				node.mTransformation.Decompose(scale, rotation, position);
+				_node->setScale(scale.x, scale.y, scale.z);
+				_node->setRotation(rotation.x, rotation.y, rotation.z);
+				_node->setPos(position.x, position.y, position.z);
+
 				getChild(*node.mChildren[i],scene,*_node,rendi);
 			}
+
+
+
 		}
 	
 }
