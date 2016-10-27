@@ -1,13 +1,14 @@
 #ifndef IMPORTADOR_H
 #define IMPORTADOR_H
-
-#include "Mesh.h"
+#include "Node.h"
 #include <vector>
 
 #define DLLexport __declspec(dllexport)
 class DLLexport Importador{
 public:
-	Importador();
-	bool importScene(std::string& rkFilename, Node& orkSceneRoot);
+	Importador(Renderer& rkRenderer);
+	bool importScene(std::string rkFilename, Node& orkSceneRoot);
+	Renderer rendi;
+
 };
 #endif IMPORTADOR_H

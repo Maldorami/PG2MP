@@ -12,8 +12,6 @@ private:
 	Node* nodo1;
 	Node* nodo2;
 
-	std::vector<Mesh*> scene1;
-
 	Mesh* teapot;
 	Mesh* taurus;
 	Mesh* valla;

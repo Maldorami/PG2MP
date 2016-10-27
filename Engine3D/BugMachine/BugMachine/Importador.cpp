@@ -2,24 +2,29 @@
 #include "Importer.hpp"
 #include "scene.h"
 #include "postprocess.h"
-#include "Node.h"
+#include "Mesh.h"
+
 #pragma comment (lib, "assimp.lib")
+void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi);
 
-Importador::Importador(){}
+Importador::Importador(Renderer& rkRenderer)
+:
+rendi(rkRenderer)
+{}
 
-bool Importador::importScene(std::string& fileName, Node& orkSceneRoot){
+bool Importador::importScene(std::string fileName, Node& orkSceneRoot){
 	Assimp::Importer Importer;
 	fileName = "Assets\\" + fileName;
 	const aiScene* pScene = Importer.ReadFile(fileName, aiProcess_Triangulate);
 	// aiProcess_CalcTangentSpace |aiProcess_Triangulate |	aiProcess_JoinIdenticalVertices |	aiProcess_SortByPType
 	for (int i = 0; i < pScene->mRootNode->mNumChildren; i++)
 	{	
-		getChild(*pScene->mRootNode->mChildren[i], *pScene);
+		getChild(*pScene->mRootNode->mChildren[i], *pScene, orkSceneRoot, rendi);
 	}
 	return true;
 }
 
-void getChild( aiNode& node, const aiScene& scene){
+void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi){
 	for (int i = 0; i < node.mNumMeshes; i++)
 	{
 		const aiMesh* mesh = scene.mMeshes[node.mMeshes[i]];
@@ -44,9 +49,20 @@ void getChild( aiNode& node, const aiScene& scene){
 
 			verticesT[i] = *vertice;
 		}
-		//preguntar si tiene children y llamar la recursividad
-		/*Mesh _mesh ;
-		_mesh.setMeshData(verticesT, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);*/
-	}
+		Mesh* _mesh = new Mesh(rendi);
+		_mesh->setMeshData(verticesT, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);
+		orkSceneRoot.AddChild(_mesh);
+		}
+
+		if (node.mNumChildren>0)
+		{
+			Node* _node = new Node();
+			for (int i = 0; i < node.mNumChildren; i++)
+			{
+				orkSceneRoot.AddChild(_node);
+				getChild(*node.mChildren[i],scene,*_node,rendi);
+			}
+		}
+	
 }
 

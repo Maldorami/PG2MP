@@ -24,8 +24,8 @@ public:
 	DLLexport void draw(CustomVertex* apkVertices, _D3DPRIMITIVETYPE ePrimitive, unsigned int uiVertexCount);
 	DLLexport const Texture loadTexture(const std::string& fileName, int colorKey);
 
-	Renderer(){};
-	~Renderer();
+	DLLexport Renderer(){};
+	DLLexport ~Renderer();
 
 	bool init(HWND hwnd);
 	void beginFrame();
