@@ -3,9 +3,14 @@
 #include "scene.h"
 #include "postprocess.h"
 #include "Mesh.h"
+#include <stack>
+#include <typeinfo>
+
+using namespace std;
 
 #pragma comment (lib, "assimp.lib")
 void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi);
+void reemparenting(Node& root);
 
 Importador::Importador(Renderer& rkRenderer)
 :
@@ -20,7 +25,43 @@ bool Importador::importScene(std::string fileName, Node& orkSceneRoot){
 		
 	getChild(*pScene->mRootNode, *pScene, orkSceneRoot, rendi);
 
+	//reemparenting(orkSceneRoot);
+
 	return true;
+}
+
+void reemparenting(Node& root){
+	for (unsigned int i = 0; i < root._childs.size(); i++){
+		if (root._childs.size() == 1){
+			if (root._parent != NULL){
+
+				string type = typeid(*root._childs[i]).name();
+				if (type == "class Node"){
+					Node* node = new Node();
+					node = (Node*)root._childs[i];
+
+					root._childs[0]->setParent(*root._parent);
+					root._parent->removeChild(&root);
+
+					reemparenting(*node);
+
+					delete &root;
+				}
+
+				root._childs[0]->setParent(*root._parent);
+				root._parent->removeChild(&root);
+				delete &root;
+			}
+		}
+		else{
+			string type = typeid(*root._childs[i]).name();
+			if (type == "class Node"){
+				Node* node = new Node();
+				node = (Node*)root._childs[i];
+				reemparenting(*node);
+			}
+		}
+	}
 }
 
 void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi){
@@ -44,7 +85,7 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 			vertice->y = mesh->mVertices[i].y;
 			vertice->z = mesh->mVertices[i].z;
 			vertice->u = mesh->mTextureCoords[0][i].x;
-			vertice->v = mesh->mTextureCoords[0][i].y;
+			vertice->v = -mesh->mTextureCoords[0][i].y;
 
 			verticesT[i] = *vertice;
 		}
@@ -60,7 +101,30 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 
 		aiString path;
 		if (scene.mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &path) == AI_SUCCESS){
-			_mesh->setTextureId(rendi.loadTexture(path.data, D3DCOLOR_XRGB(0, 255, 0)));
+
+			string pathName = path.data;
+			char tmp = ' ';
+			bool ready = false;
+			stack<char> stackFinal;
+
+			for (unsigned int i = pathName.size(); i != -1; i--){
+				tmp = pathName[i];
+
+				if (tmp == '/') ready = true;
+				
+				if (!ready){
+					stackFinal.push(tmp);
+				}
+			}
+
+			string pathFinal = "Assets\\";
+			int sizeStackFinal = stackFinal.size();
+			for (unsigned int x = 0; x < sizeStackFinal; x++){
+				pathFinal += stackFinal.top();
+				stackFinal.pop();
+			}
+
+			_mesh->setTextureId(rendi.loadTexture(pathFinal, D3DCOLOR_XRGB(255, 0, 255)));
 		}
 
 		_mesh->setMeshData(verticesT, Primitive::TriangleList, mesh->mNumVertices, indices, mesh->mNumFaces * 3);
@@ -74,20 +138,16 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 				Node* _node = new Node();
 				orkSceneRoot.AddChild(_node);
 
-				aiVector3t<float> scale;
+				/*aiVector3t<float> scale;
 				aiQuaterniont<float> rotation;
 				aiVector3t<float> position;
 				node.mTransformation.Decompose(scale, rotation, position);
 				_node->setScale(scale.x, scale.y, scale.z);
 				_node->setRotation(rotation.x, rotation.y, rotation.z);
-				_node->setPos(position.x, position.y, position.z);
+				_node->setPos(position.x, position.y, position.z);*/
 
 				getChild(*node.mChildren[i],scene,*_node,rendi);
 			}
-
-
-
 		}
-	
 }
 
