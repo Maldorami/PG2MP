@@ -19,8 +19,10 @@ public:
 		size_t uiVertexCount, const unsigned short* pusIndices,
 		size_t uiIndexCount);
 
-	DLLexport void draw();
+	DLLexport void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum);
 	DLLexport void setTextureId(Texture _texture);
+
+	DLLexport void updateBV();
 
 private:
 	IndexBuffer* indexB;
@@ -28,5 +30,7 @@ private:
 	Renderer rendi;
 	Primitive primitive;
 	Texture _texture;
+
+	bool drawBV = true;
 };
 #endif

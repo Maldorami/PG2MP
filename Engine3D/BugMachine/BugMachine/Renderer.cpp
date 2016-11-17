@@ -61,7 +61,7 @@ bool Renderer::init(HWND hWnd)
 	float viewPortWidth = static_cast<float> (viewPort.Width);
 	float viewPortHeight = static_cast<float> (viewPort.Height);
 
-	screenDepth = 1000000.0f;
+	screenDepth = 100000.0f;
 	projectionMatrix = new D3DXMATRIX();
 	D3DXMatrixPerspectiveFovLH(projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, 1.0f, screenDepth);
 	d3ddev->SetTransform(D3DTS_PROJECTION, projectionMatrix);

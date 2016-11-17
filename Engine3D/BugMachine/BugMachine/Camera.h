@@ -24,6 +24,7 @@ public:
 
 	// frustum
 	DLLexport const Frustum& getFrustum() const;
+	DLLexport void setFrustum(Frustum* _frustum);
 	DLLexport void updateFrustum();
 	Frustum* frustum;
 

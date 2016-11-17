@@ -9,19 +9,28 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <math.h>
+#include <iostream>
 
-Frustum::Frustum(Renderer& rkRenderer) 
+Frustum::Frustum(Renderer& rkRenderer)
 :
+m_planes(NULL),
 rendi(rkRenderer)
-{}
+{
+	const int planes = 6;
+	m_planes = new Plane[planes];
+	for (int i = 0; i < planes; i++)
+	{
+		m_planes[i] = new D3DXPLANE();
+	}
+	matrix = new D3DXMATRIX();
+}
 
-Frustum::~Frustum(){}		
+Frustum::~Frustum(){}
 
 void Frustum::ConstructFrustum(float screenDepth, Matrix& projectionMatrix, Matrix& viewMatrix){
 	float zMinimum;
 	float r;
-	Matrix matrix = new D3DXMATRIX();
-	
+
 	// Calculate the minimum Z distance in the frustum.
 	zMinimum = -projectionMatrix->_43 / projectionMatrix->_33;
 	r = screenDepth / (screenDepth - zMinimum);
@@ -72,4 +81,64 @@ void Frustum::ConstructFrustum(float screenDepth, Matrix& projectionMatrix, Matr
 	m_planes[5]->c = matrix->_34 + matrix->_32;
 	m_planes[5]->d = matrix->_44 + matrix->_42;
 	D3DXPlaneNormalize(m_planes[5], m_planes[5]);
+}
+
+CollisionResult Frustum::CheckCollision(const AABB& aabb){
+	CollisionResult result;
+	int resultCont = 0;
+	int totalResult = 0;
+	for (int i = 0; i < 6; i++){
+		if (D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMin, aabb.ActualzMin)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if (D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMax, aabb.ActualzMax)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMin, aabb.ActualzMax)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMax, aabb.ActualzMin)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMin, aabb.ActualzMin)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMin, aabb.ActualzMax)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMax, aabb.ActualzMax)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMax, aabb.ActualzMin)) >= 0.0f)
+		{
+			resultCont++;
+		}
+		if (resultCont == 8)
+		{
+			totalResult++;
+			resultCont = 0;
+		}
+	}
+
+	if (totalResult == 6)
+	{		
+		return AllInside;
+	}
+	else //if (totalResult == 0)
+	{
+		return AllOutside;
+	}
+	/*else
+	{
+		return PartiallyInside;
+	}*/
+	
+    
 }

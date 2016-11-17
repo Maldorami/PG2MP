@@ -12,9 +12,13 @@ private:
 	Node* nodo1;
 	Node* nodo2;
 
+	Frustum* frustum;
+
 	Mesh* teapot;
 	Mesh* taurus;
 	Mesh* valla;
+
+	Mesh* ballMax;
 
 	Importador* importador;
 

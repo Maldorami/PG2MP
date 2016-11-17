@@ -106,10 +106,15 @@ void Camera::fly(float distance){
 void Camera::setRender(Renderer& rendi){
 	render = &rendi;
 }
+
 const Frustum& Camera::getFrustum() const{
 	return *frustum;
 }
 
 void Camera::updateFrustum(){
 	frustum->ConstructFrustum(render->screenDepth, render->projectionMatrix, _localView);
+}
+
+void Camera::setFrustum(Frustum* _frustum){
+	frustum = _frustum;
 }

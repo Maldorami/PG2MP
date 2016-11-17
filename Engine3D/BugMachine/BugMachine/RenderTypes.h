@@ -54,6 +54,29 @@ struct TexCoordVertex{
 	float v;
 };
 //---------------------------------------------------------------------------
+struct Pivot{
+	float x;
+	float y;
+	float z;
+};
+
+struct AABB{
+	float width;
+	float height;
+	float depth;
+
+	Pivot pivot;
+
+	float xMin, xMax = 0;
+	float yMin, yMax = 0;
+	float zMin, zMax = 0;
+
+	float ActualxMin, ActualxMax = 0;
+	float ActualyMin, ActualyMax = 0;
+	float ActualzMin, ActualzMax = 0;
+};
+
+//---------------------------------------------------------------------------
 typedef IDirect3DTexture9* Texture;
 static const Texture NoTexture = NULL;
 //---------------------------------------------------------------------------

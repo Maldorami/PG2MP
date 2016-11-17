@@ -1,9 +1,8 @@
 #ifndef ENTITY3D_H
 #define ENTITY3D_H
 
-#include "Mat.h"
-#include "Renderer.h"
 #include "pg1_timer.h"
+#include "Frustum.h"
 
 class Node;
 
@@ -28,12 +27,20 @@ public:
 	DLLexport float scaleY();
 	DLLexport float scaleZ();
 
-	DLLexport virtual void draw() = 0;
-
+	DLLexport virtual void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum) = 0;
 	DLLexport void setParent(Node& parent);
-
 	DLLexport virtual void updateWordTransformation();
+
+	DLLexport void setName(std::string name);
+	DLLexport std::string getName();
+
 	Node* _parent;
+	AABB BV;
+
+public:
+	DLLexport const AABB& getAABB() const;
+	DLLexport virtual void updateBV() = 0;
+
 
 private:
 	float _posX, _posY, _posZ;
@@ -42,9 +49,9 @@ private:
 	bool _flipX;
 	void updateLocalTransformation();
 	
+	std::string _name;
 
-protected:
-	
+protected:	
 	Matrix _WordtransformationMatrix;
 	Matrix _LocaltransformationMatrix;
 };

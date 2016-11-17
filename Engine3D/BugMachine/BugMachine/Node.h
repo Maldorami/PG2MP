@@ -8,9 +8,11 @@ class Node : public Entity3D{
 public:
 	DLLexport Node();
 	DLLexport void AddChild(Entity3D* child);
-	DLLexport void draw();
+	DLLexport void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum);
 	DLLexport void updateWordTransformation();
 	DLLexport void removeChild(Entity3D* pkChild);
+	DLLexport void updateBV();
+
 
 
 //private:

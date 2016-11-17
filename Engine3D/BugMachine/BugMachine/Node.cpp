@@ -3,11 +3,30 @@
 
 Node::Node(){}
 
-void Node::draw(){
-	std::vector<Entity3D*>::iterator it;
+void Node::updateBV(){
 
-	for (it = _childs.begin(); it != _childs.end(); it++){
-		(*it)->draw();
+}
+
+void Node::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum){
+	updateWordTransformation();
+	std::vector<Entity3D*>::iterator it;
+	if (eParentResult != AllOutside)
+	{
+		if (eParentResult == AllInside)
+		{
+			for (it = _childs.begin(); it != _childs.end(); it++){
+				(*it)->draw(rkRenderer, eParentResult, rkFrustum);
+			}
+		}
+		else
+		{
+			if (rkFrustum.CheckCollision(BV) != AllOutside)
+			{
+				for (it = _childs.begin(); it != _childs.end(); it++){
+					(*it)->draw(rkRenderer, rkFrustum.CheckCollision(BV), rkFrustum);
+				}
+			}
+		}
 	}
 }
 

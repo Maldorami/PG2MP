@@ -12,9 +12,12 @@ public:
 	DLLexport ~Frustum();
 	DLLexport void ConstructFrustum(float screenDepth, Matrix& projectionMatrix, Matrix& viewMatrix);
 
-	CollisionResult CheckCollision(const AABB& aabb);
+	DLLexport CollisionResult CheckCollision(const AABB& aabb);
 	Renderer rendi;
-	Plane m_planes[6];
+	Plane* m_planes;
+	Matrix matrix;
+private:
+	const int planes = 6;
 
 };
 #endif
