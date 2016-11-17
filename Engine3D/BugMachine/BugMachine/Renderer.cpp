@@ -1,5 +1,4 @@
 #include"Renderer.h"
-#include"RenderTypes.h"
 #include "pg2_vertexbuffer.h"
 #include "pg2_indexbuffer.h"
 //---------------------------------------------------------------------------
@@ -62,9 +61,10 @@ bool Renderer::init(HWND hWnd)
 	float viewPortWidth = static_cast<float> (viewPort.Width);
 	float viewPortHeight = static_cast<float> (viewPort.Height);
 
-	D3DXMATRIX projectionMatrix;
-	D3DXMatrixPerspectiveFovLH(&projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, 1.0f, 1000000.0f);
-	d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
+	screenDepth = 1000000.0f;
+	projectionMatrix = new D3DXMATRIX();
+	D3DXMatrixPerspectiveFovLH(projectionMatrix, (float)(M_PI * 0.25), viewPortWidth / viewPortHeight, 1.0f, screenDepth);
+	d3ddev->SetTransform(D3DTS_PROJECTION, projectionMatrix);
 
 	return true;	
 
@@ -159,6 +159,7 @@ const Texture Renderer::loadTexture(const std::string& fileName, int colorKey){
 	else{		
 		textures.push_back(texture);
 		return texture;
+
 	}
 }
 //---------------------------------------------------------------------------

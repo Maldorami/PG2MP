@@ -10,7 +10,6 @@ using namespace std;
 
 #pragma comment (lib, "assimp.lib")
 void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot,Renderer& rendi);
-void reemparenting(Node& root);
 
 Importador::Importador(Renderer& rkRenderer)
 :
@@ -25,44 +24,10 @@ bool Importador::importScene(std::string fileName, Node& orkSceneRoot){
 		
 	getChild(*pScene->mRootNode, *pScene, orkSceneRoot, rendi);
 
-	//reemparenting(orkSceneRoot);
 
 	return true;
 }
 
-void reemparenting(Node& root){
-	for (unsigned int i = 0; i < root._childs.size(); i++){
-		if (root._childs.size() == 1){
-			if (root._parent != NULL){
-
-				string type = typeid(*root._childs[i]).name();
-				if (type == "class Node"){
-					Node* node = new Node();
-					node = (Node*)root._childs[i];
-
-					root._childs[0]->setParent(*root._parent);
-					root._parent->removeChild(&root);
-
-					reemparenting(*node);
-
-					delete &root;
-				}
-
-				root._childs[0]->setParent(*root._parent);
-				root._parent->removeChild(&root);
-				delete &root;
-			}
-		}
-		else{
-			string type = typeid(*root._childs[i]).name();
-			if (type == "class Node"){
-				Node* node = new Node();
-				node = (Node*)root._childs[i];
-				reemparenting(*node);
-			}
-		}
-	}
-}
 
 void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& rendi){
 	for (unsigned int i = 0; i < node.mNumMeshes; i++)

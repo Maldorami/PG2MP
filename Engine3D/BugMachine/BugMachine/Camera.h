@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Renderer.h"
+#include "Frustum.h"
 
 #define DLLexport __declspec(dllexport)
 
@@ -21,6 +21,11 @@ public:
 	DLLexport void walk(float distance);
 	DLLexport void strafe(float distance);
 	DLLexport void fly(float distance);
+
+	// frustum
+	DLLexport const Frustum& getFrustum() const;
+	DLLexport void updateFrustum();
+	Frustum* frustum;
 
 	DLLexport void update();
 

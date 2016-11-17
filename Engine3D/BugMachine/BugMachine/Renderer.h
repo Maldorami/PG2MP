@@ -42,6 +42,8 @@ public:
 	void setCurrentIndexBuffer(IndexBuffer* pkIndexBuffer);
 	void setCurrentVertexBuffer(VertexBuffer* pkVertexBuffer);
 	void drawCurrentBuffers(Primitive ePrimitive);
+	float screenDepth;
+	Matrix projectionMatrix;
 
 private:
 	VertexBuffer* v_buffer;

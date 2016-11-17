@@ -19,6 +19,14 @@ public:
 	float x, y, z, u, v;
 };
 //---------------------------------------------------------------------------
+enum CollisionResult
+{
+	AllInside,
+	AllOutside,
+	PartiallyInside
+};
+
+//---------------------------------------------------------------------------
 enum Primitive{
 	TriangleList = 0,
 	TriangleStrip,

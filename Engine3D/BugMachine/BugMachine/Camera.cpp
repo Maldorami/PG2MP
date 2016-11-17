@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include "Renderer.h"
 
 #include <d3d9.h>
 #pragma comment (lib, "d3d9.lib")
@@ -24,7 +23,8 @@ Camera::Camera(Renderer& renderer)
 	_right(new D3DXVECTOR3(1.0f, 0.0f, 0.0f)),
 	_lookAt(new D3DXVECTOR3(0.0f, 0.0f, 1.0f)),
 	_pos(new D3DXVECTOR3(0.0f, 0.0f, -1000.0f)),
-	_localView(new D3DXMATRIX())
+	_localView(new D3DXMATRIX()),
+	frustum(new Frustum(renderer))
 {
 	setRender(renderer);
 	update();
@@ -105,4 +105,11 @@ void Camera::fly(float distance){
 
 void Camera::setRender(Renderer& rendi){
 	render = &rendi;
+}
+const Frustum& Camera::getFrustum() const{
+	return *frustum;
+}
+
+void Camera::updateFrustum(){
+	frustum->ConstructFrustum(render->screenDepth, render->projectionMatrix, _localView);
 }
