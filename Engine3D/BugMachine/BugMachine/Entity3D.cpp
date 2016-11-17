@@ -23,6 +23,14 @@ _LocaltransformationMatrix(new D3DXMATRIX())
 	updateLocalTransformation();
 }
 //---------------------------------------------------------------------------
+std::string Entity3D::getName(){
+	return _name;
+}
+//---------------------------------------------------------------------------
+void Entity3D::setName(std::string name){
+	_name = name;
+}
+//---------------------------------------------------------------------------
 Entity3D::~Entity3D(){
 	delete _WordtransformationMatrix;
 	_WordtransformationMatrix = NULL;
@@ -117,8 +125,6 @@ void Entity3D::updateLocalTransformation(){
 	D3DXMatrixMultiply(_LocaltransformationMatrix, &rotationMatY, _LocaltransformationMatrix);
 	D3DXMatrixMultiply(_LocaltransformationMatrix, &rotationMatZ, _LocaltransformationMatrix);
 	D3DXMatrixMultiply(_LocaltransformationMatrix, &scaleMat, _LocaltransformationMatrix);
-
-	//updateWordTransformation();
 }
 //---------------------------------------------------------------------------
 void Entity3D::updateWordTransformation(){

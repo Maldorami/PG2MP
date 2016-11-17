@@ -11,6 +11,7 @@ public:
 	DLLexport void draw();
 	DLLexport void updateWordTransformation();
 	DLLexport void removeChild(Entity3D* pkChild);
+	DLLexport void updateBV();
 
 
 //private:

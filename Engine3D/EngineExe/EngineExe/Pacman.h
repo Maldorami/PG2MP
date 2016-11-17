@@ -16,6 +16,8 @@ private:
 	Mesh* taurus;
 	Mesh* valla;
 
+	Mesh* ballMax;
+
 	Importador* importador;
 
 	Camera* cam;

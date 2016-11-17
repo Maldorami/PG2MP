@@ -49,9 +49,10 @@ bool Pacman::init(Renderer& rendi){
 
 	nodo1 = new Node();
 	importador = new Importador(rendi);
-	importador->importScene("scene.dae", *nodo1);
-	nodo1->setScale(100, 100, 100);
-	
+	importador->importScene("newScene.dae", *nodo1);
+	//nodo1->setScale(100, 100, 100);
+	nodo1->setPos(0, -300, 300);
+
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -73,7 +74,6 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	if (input.keyDown(input.KEY_N)) nodo1->_childs[1]->setRotation(nodo1->_childs[1]->rotationX(), nodo1->_childs[1]->rotationY() + RotModif, nodo1->_childs[1]->rotationZ());
 	if (input.keyDown(input.KEY_M)) nodo1->_childs[1]->setRotation(nodo1->_childs[1]->rotationX(), nodo1->_childs[1]->rotationY() - RotModif, nodo1->_childs[1]->rotationZ());
 
-	nodo1->updateWordTransformation();
 	nodo1->draw();
 	cam->update();
 	cameraControll(input, timer, cam);

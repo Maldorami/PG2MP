@@ -3,7 +3,12 @@
 
 Node::Node(){}
 
+void Node::updateBV(){
+
+}
+
 void Node::draw(){
+	updateWordTransformation();
 	std::vector<Entity3D*>::iterator it;
 
 	for (it = _childs.begin(); it != _childs.end(); it++){

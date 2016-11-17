@@ -29,11 +29,19 @@ public:
 	DLLexport float scaleZ();
 
 	DLLexport virtual void draw() = 0;
-
 	DLLexport void setParent(Node& parent);
-
 	DLLexport virtual void updateWordTransformation();
+
+	DLLexport void setName(std::string name);
+	DLLexport std::string getName();
+
 	Node* _parent;
+	AABB BV;
+
+public:
+	DLLexport const AABB& getAABB() const;
+	DLLexport virtual void updateBV() = 0;
+
 
 private:
 	float _posX, _posY, _posZ;
@@ -42,9 +50,9 @@ private:
 	bool _flipX;
 	void updateLocalTransformation();
 	
+	std::string _name;
 
-protected:
-	
+protected:	
 	Matrix _WordtransformationMatrix;
 	Matrix _LocaltransformationMatrix;
 };

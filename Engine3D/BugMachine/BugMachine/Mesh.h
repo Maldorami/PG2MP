@@ -22,11 +22,15 @@ public:
 	DLLexport void draw();
 	DLLexport void setTextureId(Texture _texture);
 
+	DLLexport void updateBV();
+
 private:
 	IndexBuffer* indexB;
 	VertexBuffer* vertexB;
 	Renderer rendi;
 	Primitive primitive;
 	Texture _texture;
+
+	bool drawBV = true;
 };
 #endif
