@@ -25,6 +25,8 @@ public:
 
 	DLLexport void updateBV();
 
+	DLLexport void getChild(std::string name, Entity3D& child);
+
 	IndexBuffer* indexB;
 	VertexBuffer* vertexB;
 

@@ -6,6 +6,7 @@
 #include "Text.h"
 
 class Node;
+class Mesh;
 
 #define DLLexport __declspec(dllexport)
 
@@ -30,6 +31,8 @@ public:
 
 	DLLexport virtual void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum) = 0;
 	DLLexport virtual void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text) = 0;
+
+	DLLexport virtual void getChild(std::string name, Entity3D& child) = 0;
 
 	DLLexport void setParent(Node& parent);
 	DLLexport virtual void updateWordTransformation();

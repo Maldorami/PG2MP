@@ -13,6 +13,7 @@ private:
 	Node* nodo1;
 	Frustum* frustum;
 	Importador* importador;
+	Mesh* teapot;
 
 	Node* cube;
 	Node* cube2;

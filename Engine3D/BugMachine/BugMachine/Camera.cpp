@@ -52,7 +52,7 @@ void Camera::roll(float angle){
 	D3DXMATRIX rotation;
 	D3DXMatrixRotationAxis(&rotation, _forward, D3DXToRadian(angle));
 	D3DXVec3TransformNormal(_right, _right, &rotation);
-	//D3DXVec3TransformNormal(&_up, &_up, &rotation);
+	D3DXVec3TransformNormal(_up, _up, &rotation);
 
 	update();
 }

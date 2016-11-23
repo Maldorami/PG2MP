@@ -17,6 +17,13 @@ rendi(rkRenderer)
 {}
 using namespace std;
 
+void Mesh::getChild(std::string name, Entity3D& child){
+	if (name == getName())
+	{
+		child = *this;
+	}
+}
+
 void Mesh::updateBV(){
 
 	D3DXVECTOR3* wordScale = new D3DXVECTOR3();
@@ -40,6 +47,23 @@ void Mesh::updateBV(){
 
 	BV.ActualzMax = (BV.zMax + wordTranslation->z) * wordScale->z;
 	BV.ActualzMin = (BV.zMin + wordTranslation->z) * wordScale->z;
+
+	if (BV.ActualxMin> BV.ActualxMax){
+		float a = BV.ActualxMin;
+		BV.ActualxMin = BV.ActualxMax;
+		BV.ActualxMax = a;
+	}
+	if (BV.ActualyMin > BV.ActualyMax){
+		float a = BV.ActualyMin;
+		BV.ActualyMin = BV.ActualyMax;
+		BV.ActualyMax = a;
+	}
+
+	if (BV.ActualzMin > BV.ActualzMax){
+		float a = BV.ActualzMin;
+		BV.ActualzMin = BV.ActualzMax;
+		BV.ActualzMax = a;
+	}
 
 	BV.width = BV.ActualxMax - BV.ActualxMin;
 	BV.height = BV.ActualyMax - BV.ActualyMin;

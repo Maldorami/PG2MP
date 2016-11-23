@@ -5,6 +5,20 @@
 Node::Node(){}
 
 using namespace std;
+
+void Node::getChild(string name, Entity3D& child){
+	std::vector<Entity3D*>::iterator it;
+	for (it = _childs.begin(); it != _childs.end(); it++){
+		if (name == (*it)->getName())
+		{
+		child = *(*it);
+		}
+		else
+		{
+		(*it)->getChild(name, child);
+		}
+	}
+}
 void Node::updateBV(){
 	std::vector<Entity3D*>::iterator it;
 
