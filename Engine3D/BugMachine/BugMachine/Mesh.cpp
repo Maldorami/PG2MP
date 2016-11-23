@@ -3,6 +3,12 @@
 #include "pg2_vertexbuffer.h"
 #include <iostream>
 
+#include <d3d9.h>
+#pragma comment (lib, "d3d9.lib")
+
+#include <d3dx9.h>
+#pragma comment (lib, "d3dx9.lib")
+
 Mesh::Mesh(Renderer& rkRenderer)
 :
 indexB(NULL),
@@ -13,33 +19,31 @@ using namespace std;
 
 void Mesh::updateBV(){
 
+	D3DXVECTOR3* wordScale = new D3DXVECTOR3();
+	D3DXQUATERNION* wordRotation = new D3DXQUATERNION();
+	D3DXVECTOR3* wordTranslation = new D3DXVECTOR3();
+
+	Matrix wordTransf = new D3DXMATRIX();
+	wordTransf = _WordtransformationMatrix;
+
+	D3DXMatrixDecompose(wordScale, wordRotation, wordTranslation, wordTransf);
+
 	BV.pivot.x = posX();
 	BV.pivot.y = posY();
 	BV.pivot.z = posZ();
+	
+	BV.ActualxMax = (BV.xMax + wordTranslation->x) * wordScale->x;
+	BV.ActualxMin = (BV.xMin + wordTranslation->x) * wordScale->x;
 
-	BV.ActualxMax = (BV.xMax) * scaleX();
-	BV.ActualxMin = (BV.xMin) * scaleX();
+	BV.ActualyMax = (BV.yMax + wordTranslation->y) * wordScale->y;
+	BV.ActualyMin = (BV.yMin + wordTranslation->y) * wordScale->y;
 
-	BV.ActualyMax = (BV.yMax) * scaleY();
-	BV.ActualyMin = (BV.yMin) * scaleY();
-
-	BV.ActualzMax = (BV.zMax) * scaleY();
-	BV.ActualzMin = (BV.zMin) * scaleY();
+	BV.ActualzMax = (BV.zMax + wordTranslation->z) * wordScale->z;
+	BV.ActualzMin = (BV.zMin + wordTranslation->z) * wordScale->z;
 
 	BV.width = BV.ActualxMax - BV.ActualxMin;
 	BV.height = BV.ActualyMax - BV.ActualyMin;
 	BV.depth = BV.ActualzMax - BV.ActualzMin;
-
-	if (drawBV){
-		cout << "Nombre: " << getName() << endl;
-		cout << "xMin: " << BV.ActualxMin << " | xMax: " << BV.ActualxMax << endl;
-		cout << "yMin: " << BV.ActualyMin << " | yMax: " << BV.ActualyMax << endl;
-		cout << "zMin: " << BV.ActualzMin << " | zMax: " << BV.ActualzMax << endl;
-		cout << "Pivot x: " << BV.pivot.x << " - y: " << BV.pivot.y << " - z: " << BV.pivot.z;
-		cout << endl << "Height: " << BV.height << " - Width: " << BV.width << " - Depth: " << BV.depth;
-		cout << endl << "-----------------------------------------------------------" << endl;
-		drawBV = false;
-	}
 }
 
 
@@ -81,7 +85,18 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 		rendi.setCurrentTexture(_texture);
 		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
 		rendi.drawCurrentBuffers(primitive);
-		updateBV();
+	}
+}
+
+void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text){
+
+	if (eParentResult != AllOutside)
+	{
+		rendi.setCurrentTexture(_texture);
+		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
+		rendi.drawCurrentBuffers(primitive);
+
+		_text.setText(_text._text + "\n   " + getName());
 	}
 }
 

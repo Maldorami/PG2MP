@@ -141,16 +141,9 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 				for (unsigned int i = 0; i < node.mNumChildren; i++)
 				{
 					Node* _node = new Node();
+					_node->setName(node.mName.C_Str());
 					orkSceneRoot.AddChild(_node);
 					getChild(*node.mChildren[i], scene, *_node, rendi);
-
-					/*aiVector3t<float> scale;
-					aiQuaterniont<float> rotation;
-					aiVector3t<float> position;
-					node.mTransformation.Decompose(scale, rotation, position);
-					_node->setScale(scale.x, scale.y, scale.z);
-					_node->setRotation(rotation.x, rotation.y, rotation.z);
-					_node->setPos(position.x, position.y, position.z);*/
 				}
 			}
 }

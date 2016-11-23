@@ -84,61 +84,181 @@ void Frustum::ConstructFrustum(float screenDepth, Matrix& projectionMatrix, Matr
 }
 
 CollisionResult Frustum::CheckCollision(const AABB& aabb){
-	CollisionResult result;
 	int resultCont = 0;
 	int totalResult = 0;
-	for (int i = 0; i < 6; i++){
-		if (D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMin, aabb.ActualzMin)) >= 0.0f)
+
+	for (int i = 0; i < 8; i++)
+	{
+		switch (i)
 		{
-			resultCont++;
-		}
-		if (D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMax, aabb.ActualzMax)) >= 0.0f)
+		case 0:
 		{
-			resultCont++;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMin, aabb.ActualzMin)) >= 0.0f)
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+				  break;
 		}
-		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMin, aabb.ActualzMax)) >= 0.0f)
+		case 1:
 		{
-			resultCont++;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMax, aabb.ActualzMax)) >= 0.0f)
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+
+				  break;
 		}
-		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMax, aabb.ActualzMin)) >= 0.0f)
+		case 2:
 		{
-			resultCont++;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMin, aabb.ActualzMax)) >= 0.0f)
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+
+				  break;
 		}
-		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMin, aabb.ActualzMin)) >= 0.0f)
+		case 3:
 		{
-			resultCont++;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMax, aabb.ActualzMin)) >= 0.0f)
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+
+				  break;
 		}
-		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMin, aabb.ActualzMax)) >= 0.0f)
+		case 4:
 		{
-			resultCont++;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMax, aabb.ActualyMin, aabb.ActualzMin)) >= 0.0f)
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+
+				  break;
 		}
-		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMax, aabb.ActualzMax)) >= 0.0f)
+		case 5:
 		{
-			resultCont++;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMin, aabb.ActualzMax)) >= 0.0f)
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+
+				  break;
 		}
-		if(D3DXPlaneDotCoord(m_planes[i], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMax, aabb.ActualzMin)) >= 0.0f)
+		case 6:
 		{
-			resultCont++;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMax, aabb.ActualzMax)) >= 0.0f)
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+
+				  break;
 		}
-		if (resultCont == 8)
+		case 7:
 		{
-			totalResult++;
-			resultCont = 0;
+				  for (int x = 0; x < 6; x++){
+
+					  if (D3DXPlaneDotCoord(m_planes[x], &D3DXVECTOR3(aabb.ActualxMin, aabb.ActualyMax, aabb.ActualzMin)) >= 0.0f)			  
+					  {
+						  resultCont++;
+					  }
+				  }
+
+				  if (resultCont == 6)
+				  {
+					  totalResult++;
+				  }
+
+				  resultCont = 0;
+
+				  break;
 		}
+	}
+		
 	}
 
-	if (totalResult == 6)
+	if (totalResult == 8)
 	{		
+		//std::cout << totalResult << std::endl;
 		return AllInside;
 	}
-	else //if (totalResult == 0)
+	else if (totalResult == 0)
 	{
+		//std::cout << totalResult << std::endl;
 		return AllOutside;
 	}
-	/*else
+	else
 	{
+		//std::cout << totalResult << std::endl;
 		return PartiallyInside;
-	}*/
-	
-    
+	}
 }

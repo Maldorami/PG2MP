@@ -9,6 +9,7 @@ public:
 	DLLexport Node();
 	DLLexport void AddChild(Entity3D* child);
 	DLLexport void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum);
+	DLLexport void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text);
 	DLLexport void updateWordTransformation();
 	DLLexport void removeChild(Entity3D* pkChild);
 	DLLexport void updateBV();
@@ -17,6 +18,7 @@ public:
 
 //private:
 	std::vector<Entity3D*> _childs;
+	bool drawBV = true;
 };
 
 

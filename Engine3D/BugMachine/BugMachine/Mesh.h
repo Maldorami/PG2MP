@@ -20,13 +20,15 @@ public:
 		size_t uiIndexCount);
 
 	DLLexport void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum);
+	DLLexport void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text);
 	DLLexport void setTextureId(Texture _texture);
 
 	DLLexport void updateBV();
 
-private:
 	IndexBuffer* indexB;
 	VertexBuffer* vertexB;
+
+private:
 	Renderer rendi;
 	Primitive primitive;
 	Texture _texture;

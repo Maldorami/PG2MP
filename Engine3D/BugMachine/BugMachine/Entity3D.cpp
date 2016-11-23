@@ -23,6 +23,10 @@ _LocaltransformationMatrix(new D3DXMATRIX())
 	updateLocalTransformation();
 }
 //---------------------------------------------------------------------------
+float Entity3D::getParentScaleX(){
+	return _parent->scaleX();
+}
+//---------------------------------------------------------------------------
 std::string Entity3D::getName(){
 	return _name;
 }

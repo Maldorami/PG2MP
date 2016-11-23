@@ -3,6 +3,7 @@
 
 #include "pg1_timer.h"
 #include "Frustum.h"
+#include "Text.h"
 
 class Node;
 
@@ -27,7 +28,9 @@ public:
 	DLLexport float scaleY();
 	DLLexport float scaleZ();
 
-	DLLexport virtual void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum) = 0;
+	DLLexport virtual void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum) = 0;
+	DLLexport virtual void draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rkFrustum, Text& _text) = 0;
+
 	DLLexport void setParent(Node& parent);
 	DLLexport virtual void updateWordTransformation();
 
@@ -52,6 +55,7 @@ private:
 	std::string _name;
 
 protected:	
+	float getParentScaleX();
 	Matrix _WordtransformationMatrix;
 	Matrix _LocaltransformationMatrix;
 };
