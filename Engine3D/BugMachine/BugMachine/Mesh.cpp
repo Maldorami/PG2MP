@@ -48,23 +48,6 @@ void Mesh::updateBV(){
 	BV.ActualzMax = (BV.zMax * wordScale->z) + wordTranslation->z;
 	BV.ActualzMin = (BV.zMin * wordScale->z) + wordTranslation->z;
 
-	if (BV.ActualxMin> BV.ActualxMax){
-		float a = BV.ActualxMin;
-		BV.ActualxMin = BV.ActualxMax;
-		BV.ActualxMax = a;
-	}
-	if (BV.ActualyMin > BV.ActualyMax){
-		float a = BV.ActualyMin;
-		BV.ActualyMin = BV.ActualyMax;
-		BV.ActualyMax = a;
-	}
-
-	if (BV.ActualzMin > BV.ActualzMax){
-		float a = BV.ActualzMin;
-		BV.ActualzMin = BV.ActualzMax;
-		BV.ActualzMax = a;
-	}
-
 	BV.width = BV.ActualxMax - BV.ActualxMin;
 	BV.height = BV.ActualyMax - BV.ActualyMin;
 	BV.depth = BV.ActualzMax - BV.ActualzMin;
@@ -120,7 +103,7 @@ void Mesh::draw(Renderer& rkRenderer, CollisionResult eParentResult, Frustum& rk
 		rendi.setMatrix(MatrixType::World, _WordtransformationMatrix);
 		rendi.drawCurrentBuffers(primitive);
 
-		_text.setText(_text._text + "\n   " + getName());
+		_text.setText(_text._text + "\n   +" + getName());
 	}
 }
 

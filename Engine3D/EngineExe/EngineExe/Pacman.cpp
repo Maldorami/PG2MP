@@ -38,7 +38,7 @@ void cameraControll(Input& input, Timer& timer, Camera* cam) {
 }
 //------------------------
 float cubeRot = 0;
-float cubeScale = 10;
+float cubeScale = 1;
 //---------------------------------------------------------------------------
 bool Pacman::init(Renderer& rendi){
 
@@ -52,7 +52,7 @@ bool Pacman::init(Renderer& rendi){
 	nodo1->setName("Root");
 	importador = new Importador(rendi);
 	importador->importScene("sceneFinal.dae", *nodo1);
-	nodo1->setScale(100, 100, 100);
+	nodo1->setScale(100,100, 100);
 	nodo1->setPos(0, 0, 0);
 
 	teapot = new Mesh(rendi);
@@ -99,10 +99,8 @@ bool Pacman::init(Renderer& rendi){
 	importador->importScene("cube.obj", *cube8);
 	cube8->setScale(cubeScale, cubeScale, cubeScale);
 
-
 	frustum = new Frustum(rendi);
 	cam->setFrustum(frustum);
-
 
 	_text.createText(0, -20, 1000, 1000, 20, "Arial","asdasdasd", rendi);
 	return true;
@@ -112,7 +110,7 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 
 	float RotModif = 0.01f * timer.timeBetweenFrames();
 	float ScaleModif = 0.1f * timer.timeBetweenFrames();
-	float PosModif = 1.0f * timer.timeBetweenFrames();
+	float PosModif = 0.1f * timer.timeBetweenFrames();
 
 	_text.setText("");
 
@@ -126,10 +124,10 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	if (input.keyDown(input.KEY_K)) nodo1->setScale(nodo1->scaleX() + ScaleModif, nodo1->scaleY() + ScaleModif, nodo1->scaleZ() + ScaleModif);
 	if (input.keyDown(input.KEY_L)) nodo1->setScale(nodo1->scaleX() - ScaleModif, nodo1->scaleY() - ScaleModif, nodo1->scaleZ() - ScaleModif);
 	// Modificar traslacion nodo1: YGHJ
-	if (input.keyDown(input.KEY_Y)) nodo1->setPos(nodo1->posX(), nodo1->posY() + PosModif, nodo1->posZ());
-	if (input.keyDown(input.KEY_H)) nodo1->setPos(nodo1->posX(), nodo1->posY() - PosModif, nodo1->posZ());
-	if (input.keyDown(input.KEY_G)) nodo1->setPos(nodo1->posX() - PosModif, nodo1->posY(), nodo1->posZ());
-	if (input.keyDown(input.KEY_J)) nodo1->setPos(nodo1->posX() + PosModif, nodo1->posY(), nodo1->posZ());
+	if (input.keyDown(input.KEY_Y)) nodo1->_childs[1]->setPos(nodo1->_childs[1]->posX(), nodo1->_childs[1]->posY() + PosModif, nodo1->_childs[1]->posZ());
+	if (input.keyDown(input.KEY_H)) nodo1->_childs[1]->setPos(nodo1->_childs[1]->posX(), nodo1->_childs[1]->posY() - PosModif, nodo1->_childs[1]->posZ());
+	if (input.keyDown(input.KEY_G)) nodo1->_childs[1]->setPos(nodo1->_childs[1]->posX() - PosModif, nodo1->_childs[1]->posY(), nodo1->_childs[1]->posZ());
+	if (input.keyDown(input.KEY_J)) nodo1->_childs[1]->setPos(nodo1->_childs[1]->posX() + PosModif, nodo1->_childs[1]->posY(), nodo1->_childs[1]->posZ());
 
 
 	cam->update();
@@ -137,14 +135,14 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	nodo1->draw(renderer, cam->frustum->CheckCollision(nodo1->BV), *frustum , _text);
 	nodo1->updateBV();
 
-	cube8->setPos(nodo1/*->_childs[0]*/->BV.ActualxMax, nodo1/*->_childs[0]*/->BV.ActualyMin, nodo1/*->_childs[0]*/->BV.ActualzMin);
-	 cube->setPos(nodo1/*->_childs[0]*/->BV.ActualxMax, nodo1/*->_childs[0]*/->BV.ActualyMax, nodo1/*->_childs[0]*/->BV.ActualzMax);
+	cube->setPos(nodo1/*->_childs[0]*/->BV.ActualxMax, nodo1/*->_childs[0]*/->BV.ActualyMax, nodo1/*->_childs[0]*/->BV.ActualzMax);
 	cube2->setPos(nodo1/*->_childs[0]*/->BV.ActualxMin, nodo1/*->_childs[0]*/->BV.ActualyMin, nodo1/*->_childs[0]*/->BV.ActualzMax);
 	cube3->setPos(nodo1/*->_childs[0]*/->BV.ActualxMin, nodo1/*->_childs[0]*/->BV.ActualyMax, nodo1/*->_childs[0]*/->BV.ActualzMax);
 	cube4->setPos(nodo1/*->_childs[0]*/->BV.ActualxMax, nodo1/*->_childs[0]*/->BV.ActualyMin, nodo1/*->_childs[0]*/->BV.ActualzMax);
 	cube5->setPos(nodo1/*->_childs[0]*/->BV.ActualxMax, nodo1/*->_childs[0]*/->BV.ActualyMax, nodo1/*->_childs[0]*/->BV.ActualzMin);
 	cube6->setPos(nodo1/*->_childs[0]*/->BV.ActualxMin, nodo1/*->_childs[0]*/->BV.ActualyMin, nodo1/*->_childs[0]*/->BV.ActualzMin);
 	cube7->setPos(nodo1/*->_childs[0]*/->BV.ActualxMin, nodo1/*->_childs[0]*/->BV.ActualyMax, nodo1/*->_childs[0]*/->BV.ActualzMin);
+	cube8->setPos(nodo1/*->_childs[0]*/->BV.ActualxMax, nodo1/*->_childs[0]*/->BV.ActualyMin, nodo1/*->_childs[0]*/->BV.ActualzMin);
 
 	 cube->draw(renderer,  CollisionResult::AllInside, *frustum);
 	 cube2->draw(renderer, CollisionResult::AllInside, *frustum);

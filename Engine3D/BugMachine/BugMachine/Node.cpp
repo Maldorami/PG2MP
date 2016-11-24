@@ -44,23 +44,6 @@ void Node::updateBV(){
 		}
 	}
 
-		if (BV.ActualxMin > BV.ActualxMax){
-			float a = BV.ActualxMin;
-			BV.ActualxMin = BV.ActualxMax;
-			BV.ActualxMax = a;
-		}
-		if (BV.ActualyMin > BV.ActualyMax){
-			float a = BV.ActualyMin;
-			BV.ActualyMin = BV.ActualyMax;
-			BV.ActualyMax = a;
-		}
-
-		if (BV.ActualzMin > BV.ActualzMax){
-			float a = BV.ActualzMin;
-			BV.ActualzMin = BV.ActualzMax;
-			BV.ActualzMax = a;
-		}
-
 	BV.pivot.x = BV.ActualxMax - ((BV.ActualxMax - BV.ActualxMin) / 2);
 	BV.pivot.y = BV.ActualyMax - ((BV.ActualyMax - BV.ActualyMin) / 2);
 	BV.pivot.z = BV.ActualzMax - ((BV.ActualzMax - BV.ActualzMin) / 2);
