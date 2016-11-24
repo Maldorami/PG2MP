@@ -35,18 +35,18 @@ void Mesh::updateBV(){
 
 	D3DXMatrixDecompose(wordScale, wordRotation, wordTranslation, wordTransf);
 
-	BV.pivot.x = posX();
-	BV.pivot.y = posY();
-	BV.pivot.z = posZ();
+	BV.pivot.x = wordTranslation->x;
+	BV.pivot.y = wordTranslation->y;
+	BV.pivot.z = wordTranslation->z;
 	
-	BV.ActualxMax = (BV.xMax + wordTranslation->x) * wordScale->x;
-	BV.ActualxMin = (BV.xMin + wordTranslation->x) * wordScale->x;
+	BV.ActualxMax = (BV.xMax * wordScale->x) + wordTranslation->x;
+	BV.ActualxMin = (BV.xMin * wordScale->x) + wordTranslation->x;
 
-	BV.ActualyMax = (BV.yMax + wordTranslation->y) * wordScale->y;
-	BV.ActualyMin = (BV.yMin + wordTranslation->y) * wordScale->y;
+	BV.ActualyMax = (BV.yMax * wordScale->y) + wordTranslation->y;
+	BV.ActualyMin = (BV.yMin * wordScale->y) + wordTranslation->y;
 
-	BV.ActualzMax = (BV.zMax + wordTranslation->z) * wordScale->z;
-	BV.ActualzMin = (BV.zMin + wordTranslation->z) * wordScale->z;
+	BV.ActualzMax = (BV.zMax * wordScale->z) + wordTranslation->z;
+	BV.ActualzMin = (BV.zMin * wordScale->z) + wordTranslation->z;
 
 	if (BV.ActualxMin> BV.ActualxMax){
 		float a = BV.ActualxMin;

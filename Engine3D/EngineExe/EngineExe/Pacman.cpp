@@ -38,7 +38,7 @@ void cameraControll(Input& input, Timer& timer, Camera* cam) {
 }
 //------------------------
 float cubeRot = 0;
-float cubeScale = 1;
+float cubeScale = 10;
 //---------------------------------------------------------------------------
 bool Pacman::init(Renderer& rendi){
 
@@ -52,8 +52,8 @@ bool Pacman::init(Renderer& rendi){
 	nodo1->setName("Root");
 	importador = new Importador(rendi);
 	importador->importScene("sceneFinal.dae", *nodo1);
-	nodo1->setScale(1, 1, 1);
-	nodo1->setPos(0, 0, 0); 
+	nodo1->setScale(100, 100, 100);
+	nodo1->setPos(0, 0, 0);
 
 	teapot = new Mesh(rendi);
 	nodo1->getChild("Teapot",*teapot);
@@ -104,15 +104,15 @@ bool Pacman::init(Renderer& rendi){
 	cam->setFrustum(frustum);
 
 
-	_text.createText(0, 0, 1000, 1000, 20, "Arial","asdasdasd", rendi);
+	_text.createText(0, -20, 1000, 1000, 20, "Arial","asdasdasd", rendi);
 	return true;
 }
 //---------------------------------------------------------------------------
 void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 
 	float RotModif = 0.01f * timer.timeBetweenFrames();
-	float ScaleModif = 1.001f /** timer.timeBetweenFrames()*/;
-	float PosModif = 0.1f * timer.timeBetweenFrames();
+	float ScaleModif = 0.1f * timer.timeBetweenFrames();
+	float PosModif = 1.0f * timer.timeBetweenFrames();
 
 	_text.setText("");
 
@@ -122,20 +122,15 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	// Modificar escala Teapot
 	if (input.keyDown(input.KEY_UP))   teapot->setScale(teapot->scaleX(), teapot->scaleY() - RotModif, teapot->scaleZ());
 	if (input.keyDown(input.KEY_DOWN)) teapot->setScale(teapot->scaleX(), teapot->scaleY() + RotModif, teapot->scaleZ());
-
 	// Modificar escala nodo1: K y L
-	if (input.keyDown(input.KEY_K)) nodo1->setScale(nodo1->scaleX() + RotModif, nodo1->scaleY() + RotModif, nodo1->scaleZ() + RotModif);
-	if (input.keyDown(input.KEY_L)) nodo1->setScale(nodo1->scaleX() - RotModif, nodo1->scaleY() - RotModif, nodo1->scaleZ() - RotModif);
+	if (input.keyDown(input.KEY_K)) nodo1->setScale(nodo1->scaleX() + ScaleModif, nodo1->scaleY() + ScaleModif, nodo1->scaleZ() + ScaleModif);
+	if (input.keyDown(input.KEY_L)) nodo1->setScale(nodo1->scaleX() - ScaleModif, nodo1->scaleY() - ScaleModif, nodo1->scaleZ() - ScaleModif);
 	// Modificar traslacion nodo1: YGHJ
-	if (input.keyDown(input.KEY_Y)) nodo1->setPos(nodo1->posX(), nodo1->posY() + RotModif, nodo1->posZ());
-	if (input.keyDown(input.KEY_H)) nodo1->setPos(nodo1->posX(), nodo1->posY() - RotModif, nodo1->posZ());
-	if (input.keyDown(input.KEY_G)) nodo1->setPos(nodo1->posX() - RotModif, nodo1->posY(), nodo1->posZ());
-	if (input.keyDown(input.KEY_J)) nodo1->setPos(nodo1->posX() + RotModif, nodo1->posY(), nodo1->posZ());
+	if (input.keyDown(input.KEY_Y)) nodo1->setPos(nodo1->posX(), nodo1->posY() + PosModif, nodo1->posZ());
+	if (input.keyDown(input.KEY_H)) nodo1->setPos(nodo1->posX(), nodo1->posY() - PosModif, nodo1->posZ());
+	if (input.keyDown(input.KEY_G)) nodo1->setPos(nodo1->posX() - PosModif, nodo1->posY(), nodo1->posZ());
+	if (input.keyDown(input.KEY_J)) nodo1->setPos(nodo1->posX() + PosModif, nodo1->posY(), nodo1->posZ());
 
-
-	// Modificar rotacion valla: N y M
-	if (input.keyDown(input.KEY_N)) nodo1->_childs[1]->setRotation(nodo1->_childs[1]->rotationX(), nodo1->_childs[1]->rotationY() + RotModif, nodo1->_childs[1]->rotationZ());
-	if (input.keyDown(input.KEY_M)) nodo1->_childs[1]->setRotation(nodo1->_childs[1]->rotationX(), nodo1->_childs[1]->rotationY() - RotModif, nodo1->_childs[1]->rotationZ());
 
 	cam->update();
 	cam->updateFrustum();

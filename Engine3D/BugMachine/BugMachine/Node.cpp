@@ -26,22 +26,40 @@ void Node::updateBV(){
 
 		(*it)->updateBV();
 
-		if (it == _childs.begin()){
+		if (it == _childs.begin())
+		{
 			BV = (*it)->BV;
 		}
 
 		else{
 
 			if (BV.ActualxMax < (*it)->BV.ActualxMax) BV.ActualxMax = (*it)->BV.ActualxMax;
-			if (BV.ActualxMin >(*it)->BV.ActualxMin) BV.ActualxMin = (*it)->BV.ActualxMin;
+			if (BV.ActualxMin > (*it)->BV.ActualxMin) BV.ActualxMin = (*it)->BV.ActualxMin;
 
 			if (BV.ActualyMax < (*it)->BV.ActualyMax) BV.ActualyMax = (*it)->BV.ActualyMax;
-			if (BV.ActualyMin >(*it)->BV.ActualyMin) BV.ActualyMin = (*it)->BV.ActualyMin;
+			if (BV.ActualyMin > (*it)->BV.ActualyMin) BV.ActualyMin = (*it)->BV.ActualyMin;
 
 			if (BV.ActualzMax < (*it)->BV.ActualzMax) BV.ActualzMax = (*it)->BV.ActualzMax;
-			if (BV.ActualzMin >(*it)->BV.ActualzMin) BV.ActualzMin = (*it)->BV.ActualzMin;
+			if (BV.ActualzMin > (*it)->BV.ActualzMin) BV.ActualzMin = (*it)->BV.ActualzMin;
 		}
 	}
+
+		if (BV.ActualxMin > BV.ActualxMax){
+			float a = BV.ActualxMin;
+			BV.ActualxMin = BV.ActualxMax;
+			BV.ActualxMax = a;
+		}
+		if (BV.ActualyMin > BV.ActualyMax){
+			float a = BV.ActualyMin;
+			BV.ActualyMin = BV.ActualyMax;
+			BV.ActualyMax = a;
+		}
+
+		if (BV.ActualzMin > BV.ActualzMax){
+			float a = BV.ActualzMin;
+			BV.ActualzMin = BV.ActualzMax;
+			BV.ActualzMax = a;
+		}
 
 	BV.pivot.x = BV.ActualxMax - ((BV.ActualxMax - BV.ActualxMin) / 2);
 	BV.pivot.y = BV.ActualyMax - ((BV.ActualyMax - BV.ActualyMin) / 2);
