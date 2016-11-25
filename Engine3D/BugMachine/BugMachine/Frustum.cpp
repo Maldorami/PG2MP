@@ -9,7 +9,6 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <math.h>
-#include <iostream>
 
 Frustum::Frustum(Renderer& rkRenderer)
 :
@@ -248,17 +247,14 @@ CollisionResult Frustum::CheckCollision(const AABB& aabb){
 
 	if (totalResult == 8)
 	{		
-		//std::cout << totalResult << std::endl;
 		return AllInside;
 	}
 	else if (totalResult == 0)
 	{
-		//std::cout << totalResult << std::endl;
 		return AllOutside;
 	}
 	else
 	{
-		//std::cout << totalResult << std::endl;
 		return PartiallyInside;
 	}
 }

@@ -9,10 +9,10 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow)
 {
-	AllocConsole();
+	/*AllocConsole();
 	freopen("CONIN$", "r", stdin);
 	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
+	freopen("CONOUT$", "w", stderr);*/
 
 	Engine engine(hInstance, 1280, 720, nCmdShow);
 

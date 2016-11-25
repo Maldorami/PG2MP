@@ -38,7 +38,7 @@ void cameraControll(Input& input, Timer& timer, Camera* cam) {
 }
 //------------------------
 float cubeRot = 0;
-float cubeScale = 1;
+float cubeScale = 10;
 //---------------------------------------------------------------------------
 bool Pacman::init(Renderer& rendi){
 
@@ -118,8 +118,8 @@ void Pacman::frame(Renderer& renderer, Input& input, Timer& timer){
 	if (input.keyDown(input.KEY_LEFT)) teapot->setPos(teapot->posX() - RotModif, teapot->posY(), teapot->posZ());
 	if (input.keyDown(input.KEY_RIGHT))teapot->setPos(teapot->posX() + RotModif, teapot->posY(), teapot->posZ());
 	// Modificar escala Teapot
-	if (input.keyDown(input.KEY_UP))   teapot->setScale(teapot->scaleX(), teapot->scaleY() - RotModif, teapot->scaleZ());
-	if (input.keyDown(input.KEY_DOWN)) teapot->setScale(teapot->scaleX(), teapot->scaleY() + RotModif, teapot->scaleZ());
+	if (input.keyDown(input.KEY_UP))   teapot->setScale(teapot->scaleX(), teapot->scaleY() + RotModif, teapot->scaleZ());
+	if (input.keyDown(input.KEY_DOWN)) teapot->setScale(teapot->scaleX(), teapot->scaleY() - RotModif, teapot->scaleZ());
 	// Modificar escala nodo1: K y L
 	if (input.keyDown(input.KEY_K)) nodo1->setScale(nodo1->scaleX() + ScaleModif, nodo1->scaleY() + ScaleModif, nodo1->scaleZ() + ScaleModif);
 	if (input.keyDown(input.KEY_L)) nodo1->setScale(nodo1->scaleX() - ScaleModif, nodo1->scaleY() - ScaleModif, nodo1->scaleZ() - ScaleModif);

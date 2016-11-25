@@ -4,7 +4,6 @@
 #include "postprocess.h"
 #include <stack>
 #include <typeinfo>
-#include <iostream>
 
 using namespace std;
 
@@ -38,21 +37,50 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 			indices[i * 3 + 2] = mesh->mFaces[i].mIndices[2];
 		}
 
+		////AABB Values
+		float xMin = 0, xMax = 0;
+		float yMin = 0, yMax = 0;
+		float zMin = 0, zMax = 0;
 		CustomVertexZ* verticesT = new CustomVertexZ[mesh->mNumVertices];
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 		{
-			CustomVertexZ* vertice = new CustomVertexZ();
-			vertice->x = mesh->mVertices[i].x;
-			vertice->y = mesh->mVertices[i].y;
-			vertice->z = mesh->mVertices[i].z;
-			vertice->u = mesh->mTextureCoords[0][i].x;
-			vertice->v = -mesh->mTextureCoords[0][i].y;
-	
-			verticesT[i] = *vertice;
+			verticesT[i].x = mesh->mVertices[i].x;
+			if (mesh->mVertices[i].x < xMin)
+				xMin = mesh->mVertices[i].x;
+			if (mesh->mVertices[i].x > xMax)
+				xMax = mesh->mVertices[i].x;
+
+			verticesT[i].y = mesh->mVertices[i].y;
+			if (mesh->mVertices[i].y < yMin)
+				yMin = mesh->mVertices[i].y;
+			if (mesh->mVertices[i].y > yMax)
+				yMax = mesh->mVertices[i].y;
+
+			verticesT[i].z = mesh->mVertices[i].z;
+			if (mesh->mVertices[i].z < zMin)
+				zMin = mesh->mVertices[i].z;
+			if (mesh->mVertices[i].z > zMax)
+				zMax = mesh->mVertices[i].z;
+
+			verticesT[i].u = mesh->mTextureCoords[0][i].x;
+			verticesT[i].v = -mesh->mTextureCoords[0][i].y;
 		}
 
 		Mesh* _mesh = new Mesh(rendi);
 		_mesh->setName(node.mName.C_Str());
+
+		_mesh->BV.pivot.x = xMax - ((xMax - xMin) / 2);
+		_mesh->BV.pivot.y = yMax - ((yMax - yMin) / 2);
+		_mesh->BV.pivot.z = zMax - ((zMax - zMin) / 2);
+		_mesh->BV.width = xMax - xMin;
+		_mesh->BV.height = yMax - yMin;
+		_mesh->BV.depth = zMax - zMin;
+		_mesh->BV.xMax = xMax;
+		_mesh->BV.xMin = xMin;
+		_mesh->BV.yMax = yMax;
+		_mesh->BV.yMin = yMin;
+		_mesh->BV.zMax = zMax;
+		_mesh->BV.zMin = zMin;
 
 		aiVector3t<float> scale;
 		aiQuaterniont<float> rotation;
@@ -60,51 +88,7 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 		node.mTransformation.Decompose(scale, rotation, position);
 		_mesh->setScale(scale.x, scale.y, scale.z);
 		_mesh->setRotation(rotation.x, rotation.y, rotation.z);
-		//_mesh->setPos(position.x, position.y, position.z);
-
-		////AABB Values
-		float xMin, xMax = 0;
-		float yMin, yMax = 0;
-		float zMin, zMax = 0;
-		for (unsigned int i = 0; i < mesh->mNumVertices; i++)
-		{
-			if (i == 0){
-				xMin = xMax = mesh->mVertices[i].x;
-				yMin = yMax = mesh->mVertices[i].y;
-				zMin = yMax = mesh->mVertices[i].z;
-			}
-			else{
-				if (mesh->mVertices[i].x < xMin) 
-					xMin = mesh->mVertices[i].x ;
-				if (mesh->mVertices[i].x > xMax) 
-					xMax = mesh->mVertices[i].x;
-
-				if (mesh->mVertices[i].y < yMin) 
-					yMin = mesh->mVertices[i].y;
-				if (mesh->mVertices[i].y > yMax) 
-					yMax = mesh->mVertices[i].y;
-
-				if (mesh->mVertices[i].z < zMin) 
-					zMin = mesh->mVertices[i].z;
-				if (mesh->mVertices[i].z > zMax) 
-					zMax = mesh->mVertices[i].z;
-			}
-		}
-		_mesh->BV.pivot.x = xMax - ((xMax - xMin) / 2);
-		_mesh->BV.pivot.y = yMax - ((yMax - yMin) / 2);
-		_mesh->BV.pivot.z = zMax - ((zMax - zMin) / 2);
-		_mesh->setPos(_mesh->BV.pivot.x, _mesh->BV.yMin, _mesh->BV.pivot.z);
-
-		_mesh->BV.width = xMax - xMin;
-		_mesh->BV.height = yMax - yMin;
-		_mesh->BV.depth = zMax - zMin;
-
-		_mesh->BV.xMax = xMax;
-		_mesh->BV.xMin = xMin;
-		_mesh->BV.yMax = yMax;
-		_mesh->BV.yMin = yMin;
-		_mesh->BV.zMax = zMax;
-		_mesh->BV.zMin = zMin;
+		_mesh->setPos(position.x, position.y, position.z);
 
 		aiString path;
 		if (scene.mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &path) == AI_SUCCESS){
@@ -155,5 +139,5 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 					orkSceneRoot.AddChild(_node);
 					getChild(*node.mChildren[i], scene, *_node, rendi);
 				}
-			}
+		}
 }

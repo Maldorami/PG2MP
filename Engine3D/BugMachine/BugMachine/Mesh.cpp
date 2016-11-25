@@ -1,7 +1,6 @@
 #include "Mesh.h"
 #include "pg2_indexbuffer.h"
 #include "pg2_vertexbuffer.h"
-#include <iostream>
 
 #include <d3d9.h>
 #pragma comment (lib, "d3d9.lib")

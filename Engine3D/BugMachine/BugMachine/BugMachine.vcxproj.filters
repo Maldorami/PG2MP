@@ -42,12 +42,6 @@
     <ClInclude Include="pg1_timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tinyxml2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -96,12 +90,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pg1_timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
