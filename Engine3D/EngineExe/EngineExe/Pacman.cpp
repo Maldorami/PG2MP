@@ -56,7 +56,7 @@ bool Pacman::init(Renderer& rendi){
 	nodo1->setPos(0, 0, 0);
 
 	teapot = new Mesh(rendi);
-	nodo1->getChild("Teapot",*teapot);
+	nodo1->getChild("Cone",*teapot);
 
 	cube = new Node();
 	importador = new Importador(rendi);

@@ -41,6 +41,9 @@ void getChild(aiNode& node, const aiScene& scene, Node& orkSceneRoot, Renderer& 
 		float xMin = 0, xMax = 0;
 		float yMin = 0, yMax = 0;
 		float zMin = 0, zMax = 0;
+		xMin = xMax = mesh->mVertices[0].x;
+		yMin = yMax = mesh->mVertices[0].y;
+		zMin = zMax = mesh->mVertices[0].z;
 		CustomVertexZ* verticesT = new CustomVertexZ[mesh->mNumVertices];
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 		{
