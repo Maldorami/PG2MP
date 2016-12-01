@@ -38,6 +38,9 @@ void Entity3D::setName(std::string name){
 Entity3D::~Entity3D(){
 	delete _WordtransformationMatrix;
 	_WordtransformationMatrix = NULL;
+
+	delete _LocaltransformationMatrix;
+	_LocaltransformationMatrix = NULL;
 }
 //---------------------------------------------------------------------------
 void Entity3D::setPos(float posX, float posY, float posZ){
@@ -107,13 +110,6 @@ float Entity3D::rotationZ(){
 }
 //---------------------------------------------------------------------------
 void Entity3D::updateLocalTransformation(){
-
-	D3DXVECTOR3* wordScale = new D3DXVECTOR3();
-	D3DXQUATERNION* wordRotation = new D3DXQUATERNION();
-	D3DXVECTOR3* wordTranslation = new D3DXVECTOR3();
-	Matrix wordTransf = new D3DXMATRIX();
-	wordTransf = _WordtransformationMatrix;
-	D3DXMatrixDecompose(wordScale, wordRotation, wordTranslation, wordTransf);
 
 	D3DXMATRIX traslatrionMat;
 	D3DXMatrixTranslation(&traslatrionMat, _posX, _posY, _posZ);

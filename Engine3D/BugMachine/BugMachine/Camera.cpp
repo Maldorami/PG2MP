@@ -2,7 +2,6 @@
 
 #include <d3d9.h>
 #pragma comment (lib, "d3d9.lib")
-
 #include <d3dx9.h>
 #pragma comment (lib, "d3dx9.lib")
 
@@ -30,7 +29,21 @@ Camera::Camera(Renderer& renderer)
 	update();
 }
 Camera::~Camera(){
+	delete	_up			;
+	delete	_forward	;
+	delete	_right		;
+	delete	_lookAt		;
+	delete	_localView	;
+	delete	frustum		;
+	delete	_pos		;
 
+	_up			= NULL;
+	_forward	= NULL;
+	_right		= NULL;
+	_lookAt		= NULL;
+	_localView	= NULL;
+	frustum		= NULL;
+	_pos		= NULL;
 }
 void Camera::update(){
 	// Actualizo loockAt

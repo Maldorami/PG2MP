@@ -24,11 +24,13 @@ public:
 	DLLexport void setTextureId(Texture _texture);
 
 	DLLexport void updateBV();
+	DLLexport void buildBV();
 
 	DLLexport void getChild(std::string name, Entity3D& child);
 
 	IndexBuffer* indexB;
 	VertexBuffer* vertexB;
+
 
 private:
 	Renderer rendi;
@@ -36,5 +38,6 @@ private:
 	Texture _texture;
 
 	bool drawBV = true;
+	const CustomVertexZ* _vertices;
 };
 #endif

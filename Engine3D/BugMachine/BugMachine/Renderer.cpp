@@ -68,6 +68,8 @@ bool Renderer::init(HWND hWnd)
 
 	return true;	
 
+	delete projectionMatrix;
+	projectionMatrix = NULL;
 }
 //---------------------------------------------------------------------------
 void Renderer::draw(CustomVertexZ* apkVertices, _D3DPRIMITIVETYPE ePrimitive, unsigned int uiVertexCount)

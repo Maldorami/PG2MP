@@ -24,7 +24,20 @@ rendi(rkRenderer)
 	matrix = new D3DXMATRIX();
 }
 
-Frustum::~Frustum(){}
+Frustum::~Frustum(){
+
+	for (int i = 0; i < planes; i++)
+	{
+		delete m_planes[i];
+		m_planes[i] = NULL;
+	}
+
+	delete matrix;
+	matrix = NULL;
+
+	delete m_planes;
+	m_planes = NULL;
+}
 
 void Frustum::ConstructFrustum(float screenDepth, Matrix& projectionMatrix, Matrix& viewMatrix){
 	float zMinimum;
